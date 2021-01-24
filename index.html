@@ -8,6 +8,7 @@
   <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
   <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+  <link rel="stylesheet" href="style.scss" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <style>
@@ -27,22 +28,30 @@
     <ion-menu side="start" content-id="main-content">
       <ion-header>
         <ion-toolbar translucent>
-          <ion-title>Menu</ion-title>
+          <ion-img [src]="../logo.jpeg" ></ion-img> <!-- image file doesnt work bc of whatsapp image... need replace with proper ai/psd export photo, include image size in css-->
         </ion-toolbar>
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-item>
-            <ion-icon name="log-in" slot="start"></ion-icon>
-            <ion-label>login</ion-label>
+          <ion-item class="ion-hide">
+            <ion-icon  name="log-in" slot="start"></ion-icon>
+            <ion-label>Login</ion-label>
           </ion-item>
           <ion-item>
             <ion-icon name="folder" slot="start"></ion-icon>
-            <ion-label>Folders</ion-label>
+            <ion-label>Inventory</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="fitness"  slot="start"></ion-icon>
+            <ion-label>Donor Module</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="build" slot="start"></ion-icon>
+            <ion-label>Case-Worker Module</ion-label>
           </ion-item>
           <ion-item>
             <ion-icon name="person" slot="start"></ion-icon>
-            <ion-label (click)="">Profile</ion-label>
+            <ion-label (click)="">Dashboard</ion-label>
           </ion-item>
 
           <ion-item slot="bottom">
@@ -52,16 +61,16 @@
           </ion-item>
         </ion-list>
         <ion-tab-bar slot="start">
-          <ion-tab-button tab="music">
-            <ion-label>Music</ion-label>
+          <ion-tab-button tab="tenants">
+            <ion-label>Tenants</ion-label>
             <ion-icon name="musical-note"></ion-icon>
           </ion-tab-button>
-          <ion-tab-button tab="movies">
-            <ion-label>Movies</ion-label>
+          <ion-tab-button tab="consumables">
+            <ion-label>Consumables</ion-label>
             <ion-icon name="videocam"></ion-icon>
           </ion-tab-button>
-          <ion-tab-button tab="games">
-            <ion-label>Games</ion-label>
+          <ion-tab-button tab="payments">
+            <ion-label>Payments</ion-label>
             <ion-icon name="game-controller"></ion-icon>
           </ion-tab-button>
         </ion-tab-bar>
@@ -74,25 +83,27 @@
           <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
-          <ion-title>Inbox</ion-title>
+          <ion-title class="pageTitle" slot="start">Inbox</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
         <ion-tabs>
 
-          <ion-tab tab="music">
+          <ion-tab tab="tenants">
             <ion-content fullscreen class="ion-padding">
               <ion-toolbar>
                 <ion-searchbar></ion-searchbar>
               </ion-toolbar>
               <ion-toolbar>
-                <h1>Music</h1>
+                <h1>Tenants</h1>
                 <ion-buttons slot="end">
                   <ion-button id="changeText" onClick="">
                     <ion-icon slot="start" name="refresh"></ion-icon>
                   </ion-button>
                 </ion-buttons>
               </ion-toolbar>
+
+              <!-- <ion-list>
               <ion-toolbar>
                 <ion-buttons slot="start">
                   <ion-button>
@@ -106,7 +117,7 @@
                 </ion-buttons>
               </ion-toolbar>
 
-              <ion-list>
+
                 <ion-item>
                   <ion-icon slot="start" name="car"></ion-icon>
                   <ion-select placeholder="Select a Value">
@@ -130,53 +141,125 @@
               </div>
     
               <button>sad</button>
+            -->
             </ion-content>
           </ion-tab>
 
+
+
+          <ion-tab tab="consumables">
+            <ion-content fullscreen class="ion-padding">
+              <ion-toolbar>
+                <ion-searchbar></ion-searchbar>
+              </ion-toolbar>
+              <ion-toolbar>
+                <h1>Consumables</h1>
+                <ion-buttons slot="end">
+                  <ion-button id="changeText" onClick="">
+                    <ion-icon slot="start" name="refresh"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+              
+              <!-- <ion-list>
+              <ion-toolbar>
+                <ion-buttons slot="start">
+                  <ion-button>
+                    Clear
+                  </ion-button>
+                </ion-buttons>
+                <ion-buttons slot="end">
+                  <ion-button>
+                    Done
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+
+
+                <ion-item>
+                  <ion-icon slot="start" name="car"></ion-icon>
+                  <ion-select placeholder="Select a Value">
+                    <ion-select-option value="1">Option 1</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <ion-item>
+                  <ion-icon slot="start" name="time"></ion-icon>
+                  <ion-datetime value="2019-01-01"></ion-datetime>
+                </ion-item>
+
+                <ion-item (click)="updateFrom()">
+                  <ion-icon slot="start" name="radio-button-on"></ion-icon>
+                  <ion-input value="Start"></ion-input>
+                </ion-item>
+              </ion-list>
+
+              <div id="div1">
+                <h2>Change Content OnClick</h2>
+              </div>
+    
+              <button>sad</button>
+            -->
+            </ion-content>
+          </ion-tab>
+
+          <ion-tab tab="payments">
+            <ion-content fullscreen class="ion-padding">
+              <ion-toolbar>
+                <ion-searchbar></ion-searchbar>
+              </ion-toolbar>
+              <ion-toolbar>
+                <h1>Payments</h1>
+                <ion-buttons slot="end">
+                  <ion-button id="changeText" onClick="">
+                    <ion-icon slot="start" name="refresh"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+
+              <!-- <ion-list>
+              <ion-toolbar>
+                <ion-buttons slot="start">
+                  <ion-button>
+                    Clear
+                  </ion-button>
+                </ion-buttons>
+                <ion-buttons slot="end">
+                  <ion-button>
+                    Done
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+
+
+                <ion-item>
+                  <ion-icon slot="start" name="car"></ion-icon>
+                  <ion-select placeholder="Select a Value">
+                    <ion-select-option value="1">Option 1</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <ion-item>
+                  <ion-icon slot="start" name="time"></ion-icon>
+                  <ion-datetime value="2019-01-01"></ion-datetime>
+                </ion-item>
+
+                <ion-item (click)="updateFrom()">
+                  <ion-icon slot="start" name="radio-button-on"></ion-icon>
+                  <ion-input value="Start"></ion-input>
+                </ion-item>
+              </ion-list>
+
+              <div id="div1">
+                <h2>Change Content OnClick</h2>
+              </div>
+    
+              <button>sad</button>
+            -->
+            </ion-content>
+          </ion-tab>
           
-
-          <ion-tab tab="movies">
-            <ion-content fullscreen class="ion-padding">
-              <ion-toolbar>
-                <ion-searchbar></ion-searchbar>
-              </ion-toolbar>
-              <h1>movies</h1>
-              <ion-toolbar>
-                <ion-buttons slot="start">
-                  <ion-button>
-                    Clear
-                  </ion-button>
-                </ion-buttons>
-                <ion-buttons slot="end">
-                  <ion-button>
-                    Done
-                  </ion-button>
-                </ion-buttons>
-              </ion-toolbar>
-            </ion-content>
-          </ion-tab>
-
-          <ion-tab tab="games">
-            <ion-content fullscreen class="ion-padding">
-              <ion-toolbar>
-                <ion-searchbar></ion-searchbar>
-              </ion-toolbar>
-              <h1>games</h1>
-              <ion-toolbar>
-                <ion-buttons slot="start">
-                  <ion-button>
-                    Clear
-                  </ion-button>
-                </ion-buttons>
-                <ion-buttons slot="end">
-                  <ion-button>
-                    Done
-                  </ion-button>
-                </ion-buttons>
-              </ion-toolbar>
-            </ion-content>
-          </ion-tab>
-
+          <!--
 
           <ion-tab label="login">
             <ion-header translucent>
@@ -202,48 +285,50 @@
             </ion-content>
           </ion-tab>
 
-            <ion-tab-bar slot="bottom">
-              <ion-tab-button tab="music">
-                <ion-label>Music</ion-label>
-                <ion-icon name="musical-note"></ion-icon>
-              </ion-tab-button>
-              <ion-tab-button tab="movies">
-                <ion-label>Movies</ion-label>
-                <ion-icon name="videocam"></ion-icon>
-              </ion-tab-button>
-              <ion-tab-button tab="games">
-                <ion-label>Games</ion-label>
-                <ion-icon name="game-controller"></ion-icon>
-              </ion-tab-button>
-            </ion-tab-bar>
-          </ion-tabs>
-          
-        </ion-app>
+        -->
 
-      </ion-content>
-    </div>
+          <ion-tab-bar slot="bottom">
+            <ion-tab-button tab="tenants">
+              <ion-label>Tenants</ion-label>
+              <ion-icon name="people-circle"></ion-icon>
+            </ion-tab-button>
+            <ion-tab-button tab="consumables">
+              <ion-label>Consumables</ion-label>
+              <ion-icon name="server"></ion-icon>
+            </ion-tab-button>
+            <ion-tab-button tab="payments">
+              <ion-label>Payments</ion-label>
+              <ion-icon name="card"></ion-icon>
+            </ion-tab-button>
+          </ion-tab-bar>
+        </ion-tabs>
+
+  </ion-app>
+
+  </ion-content>
+  </div>
 
 
-    <script>
-      async function openMenu() {
-        await menuController.open();
-      }
+  <script>
+    async function openMenu() {
+      await menuController.open();
+    }
 
-      function toggleText() {
-      }
+    function toggleText() {
+    }
 
-      $(document).ready(function () {
-        $("button").click(function () {
-          $("#div1").load("testApp.txt", function (responseTxt, statusTxt, xhr) {
-            if (statusTxt == "success")
-              alert("External content loaded successfully!");
-            if (statusTxt == "error")
-              alert("Error: " + xhr.status + ": " + xhr.statusText);
-          });
+    $(document).ready(function () {
+      $("button").click(function () {
+        $("#div1").load("testApp.txt", function (responseTxt, statusTxt, xhr) {
+          if (statusTxt == "success")
+            alert("External content loaded successfully!");
+          if (statusTxt == "error")
+            alert("Error: " + xhr.status + ": " + xhr.statusText);
         });
       });
+    });
 
-    </script>
+  </script>
 </body>
 
 </html>
