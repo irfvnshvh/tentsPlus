@@ -1,51 +1,79 @@
 /* -------------- Add in new color presets --------------------- */
 :root {
-    --ion-color-themetext: #3CB282;
-    --ion-color-themetext-rgb: 60,178,130;
-    --ion-color-themetext-contrast: #000000;
-    --ion-color-themetext-contrast-rgb: 0,0,0;
-    --ion-color-themetext-shade: #359d72;
-    --ion-color-themetext-tint: #50ba8f;
-  }
-  
-  .ion-color-themetext {
-    --ion-color-base: var(--ion-color-themetext);
-    --ion-color-base-rgb: var(--ion-color-themetext-rgb);
-    --ion-color-contrast: var(--ion-color-themetext-contrast);
-    --ion-color-contrast-rgb: var(--ion-color-themetext-contrast-rgb);
-    --ion-color-shade: var(--ion-color-themetext-shade);
-    --ion-color-tint: var(--ion-color-themetext-tint);
-  }
+  --ion-color-themetext: #3CB282;
+  --ion-color-themetext-rgb: 60,178,130;
+  --ion-color-themetext-contrast: #000000;
+  --ion-color-themetext-contrast-rgb: 0,0,0;
+  --ion-color-themetext-shade: #359d72;
+  --ion-color-themetext-tint: #50ba8f;
+  --ion-background-color:      #dbdbdb;
+}
+
+.ion-color-themetext {
+  --ion-color-base: var(--ion-color-themetext);
+  --ion-color-base-rgb: var(--ion-color-themetext-rgb);
+  --ion-color-contrast: var(--ion-color-themetext-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-themetext-contrast-rgb);
+  --ion-color-shade: var(--ion-color-themetext-shade);
+  --ion-color-tint: var(--ion-color-themetext-tint);
+
+}
 
 /*-- import fonts -- */
 @font-face{
-  font-family: TommyMade;
-  src: url("../fonts/MadeTommyRegular.otf") format("opentype");
+font-family: TommyMade;
+src: url("../fonts/MadeTommyRegular.otf") format("opentype");
 }
 @font-face{
-  font-family: TommyMade;
-  src: url("../fonts/MadeTommyLight.otf") format("opentype");
-  font-weight: lighter;
+font-family: TommyMade;
+src: url("../fonts/MadeTommyLight.otf") format("opentype");
+font-weight: lighter;
 }
 
 body{
-  font-family: TommyMade;
+font-family: TommyMade;
 }
-  
+
 
 /* -- button container class -- */
-  .acc-btn{
-      margin-top: 15px;
-  }
+.acc-btn{
+    margin-top: 15px;
+}
 
 /*-- container for logo and login/sign up buttons -- */
-  .start-container{
-      position: relative;
-      text-align: center;
-      align-self: center;
-      top: 50%;
-      width: 75%;
-      font-family: TommyMade;
-  }
+.start-container{
+    position: relative;
+    text-align: center;
+    align-self: center;
+    top: 50%;
+    width: 75%;
+    font-family: TommyMade;
+}
+
+.login-container{
+  position: relative;
+  text-align: center;
+  align-self: center;
+  top: 20%;
+  width: 75%;
+  font-family: TommyMade;
+}
 
 
+#menuLogo {
+  width: 10vw;
+  margin-left: 10%;
+  padding-bottom: 40%;
+}
+
+.userName {
+  width: 10vw;
+  padding-bottom: 35%;
+}
+
+
+body{
+  background-image: url("/sourceImages/Gradient\ Abstract\ Shapes\ Background\ Green-01.jpg");
+  background-repeat: no-repeat;
+  background-size:cover;
+}
