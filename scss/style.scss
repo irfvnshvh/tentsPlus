@@ -1,5 +1,5 @@
 // Var for SFProdisplay font
-$mainFont: "SF Pro Display";
+$mainFont: "SFProDisplay";
 
 // Var for main green colour
 $mainGreen: #659D7A;
@@ -45,13 +45,13 @@ $iconSize: 10vw;
 }
 
 @font-face {
-  font-family: "SFProDisplay";
-  src: url("SFProDisplay.tff") format("truetype");
+  font-family: SFProDisplay;
+  src: url("../fonts/SFProDisplay.ttf");
 }
 
 body {
   //Apply SFProdisplay font to body
-  font-family: SFProDisplay;
+  font-family: $mainFont;
 }
 
 //----------------------Start of start.html-----------------------------
@@ -100,7 +100,7 @@ body {
   margin-top: 15px;
 }
 
-#signup-btn{
+#gotoSignup{
     color: white;
     font-size: 20px;
 }
@@ -133,7 +133,11 @@ body {
 
 
 
-//----------------------End of login.html-----------------------------
+//----------------------End of login.html------------------------------
+
+//----------------------Start of signup.html---------------------------
+
+//----------------------End of signup.html-----------------------------
 
 #menuLogo {
   width: 10vw;

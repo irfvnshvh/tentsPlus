@@ -1,27 +1,47 @@
 
 <ion-toolbar>
   <ion-buttons class="back-btn" slot="start">
-    <ion-button>Back</ion-button>
+    <ion-button color="themetext">
+      <ion-icon name="arrow-back"></ion-icon>Back
+    </ion-button>
   </ion-buttons>
+
+  <ion-title>Sign up</ion-title>
 </ion-toolbar>
 
 
-<section class="login-container">
+<div class="login-container">
+<form>
+  <ion-item color="themewhite">
+    <ion-label position="floating">First name</ion-label>
+    <ion-input id="signFirst" type="text" maxlength="30" required></ion-input>
+  </ion-item>
 
-  <section class="acc-btn">
-    <ion-toolbar>
-      <ion-button  expand="block" class="home-btn ">Sign Up</ion-button>
-    </ion-toolbar>
-    
-    </section>
+  <ion-item color="themewhite">
+    <ion-label position="floating">Last name</ion-label>
+    <ion-input id="signLast" type="text" maxlength="30" required></ion-input>
+  </ion-item>
+  
+  <ion-item color="themewhite">
+    <ion-label position="floating">Phone number</ion-label>
+    <ion-input id="signPhone" type="tel" maxlength="8" required></ion-input>
+  </ion-item>
 
-</section>
+  <ion-item color="themewhite">
+    <ion-label position="floating">Password</ion-label>
+    <ion-input id="signPass" type="password" maxlength="21" required></ion-input>
+  </ion-item>
 
-<section class="start-container">
+  <ion-item color="themewhite">
+    <ion-label position="floating">Confirm password</ion-label>
+    <ion-input id="signConPass" type="password" maxlength="21" required></ion-input>
+  </ion-item>
 
-    
-  <div id="startImg"><img src="../images/logo.png">
+  <div class="acc-btn">
+  <ion-button id="signup-btn" expand="block" color="themetext"><div class="whitetext">Sign up</div></ion-button>
   </div>
+</form>
+
+</div>
 
 
-</section>
