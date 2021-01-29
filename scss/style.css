@@ -1,11 +1,3 @@
-// Var for SFProdisplay font
-$mainFont: "SF Pro Display";
-
-// Var for main green colour
-$mainGreen: #659D7A;
-
-$iconSize: 10vw;
-
 /* -------------- Add in new color presets --------------------- */
 :root {
   --ion-color-themetext: #3cb282;
@@ -15,7 +7,6 @@ $iconSize: 10vw;
   --ion-color-themetext-shade: #359d72;
   --ion-color-themetext-tint: #50ba8f;
   --ion-background-color: #dbdbdb;
-
   --ion-color-themewhite: #ffffff;
   --ion-color-themewhite-rgb: 255, 255, 255;
   --ion-color-themewhite-contrast: #000000;
@@ -24,7 +15,6 @@ $iconSize: 10vw;
   --ion-color-themewhite-tint: #ffffff;
 }
 
-// Main green colour #3CB282
 .ion-color-themetext {
   --ion-color-base: var(--ion-color-themetext);
   --ion-color-base-rgb: var(--ion-color-themetext-rgb);
@@ -34,7 +24,6 @@ $iconSize: 10vw;
   --ion-color-tint: var(--ion-color-themetext-tint);
 }
 
-// White colour #FFFFFF
 .ion-color-themewhite {
   --ion-color-base: var(--ion-color-themewhite);
   --ion-color-base-rgb: var(--ion-color-themewhite-rgb);
@@ -50,17 +39,14 @@ $iconSize: 10vw;
 }
 
 body {
-  //Apply SFProdisplay font to body
   font-family: SFProDisplay;
 }
 
-//----------------------Start of start.html-----------------------------
-
-// Container for start.html
 .start-container {
   position: relative;
   text-align: center;
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   width: 100%;
   height: 100%;
   background-image: url(../images/background.jpg);
@@ -69,24 +55,23 @@ body {
   background-repeat: no-repeat;
 }
 
-// Container for contents in start.html
 .start-content {
   position: absolute;
   margin: 0;
   left: 50%;
   top: 25%;
   margin-right: -50%;
-  transform: translate(-50%);
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
   width: 75%;
 }
-// Welcome text inbetween the logo and image on start.html
+
 #welcomeText {
   font-size: 25px;
   color: white;
   margin: 25px 0 10px 0;
 }
 
-//Logos and title image on start.html
 #startImg {
   width: 50vw;
 }
@@ -95,45 +80,36 @@ body {
   width: 20vw;
 }
 
-//login and signup button container
 .acc-btn {
   margin-top: 15px;
 }
 
-#signup-btn{
-    color: white;
-    font-size: 20px;
+#signup-btn {
+  color: white;
+  font-size: 20px;
 }
 
-.greentext{
-    color: $mainGreen;
+.greentext {
+  color: #659D7A;
 }
 
-//----------------------End of start.html-----------------------------
-
-//----------------------Start of login.html-----------------------------
-
-// Container for login.html
 .login-container {
-    position: relative;
-    text-align: center;
-    align-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: white;
+  position: relative;
+  text-align: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: white;
 }
 
-.whitetext{
-    color: white;
+.whitetext {
+  color: white;
 }
 
-.input{
-    background: white;
+.input {
+  background: white;
 }
-
-
-
-//----------------------End of login.html-----------------------------
 
 #menuLogo {
   width: 10vw;
@@ -145,3 +121,4 @@ body {
   width: 10vw;
   padding-bottom: 35%;
 }
+/*# sourceMappingURL=style.css.map */
