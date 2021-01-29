@@ -1,39 +1,34 @@
 
+
+
 <ion-toolbar>
   <ion-buttons class="back-btn" slot="start">
-    <ion-button>Back</ion-button>
+    <ion-button color="themetext">
+      <ion-icon name="arrow-back"></ion-icon>Back
+    </ion-button>
   </ion-buttons>
+
+  <ion-title>Login</ion-title>
 </ion-toolbar>
 
 
-<section class="login-container">
+<div class="login-container">
+<form>
+  <ion-item color="themewhite">
+    <ion-label position="floating">Phone number</ion-label>
+    <ion-input type="number" minlength="8" maxlength="8" required></ion-input>
+  </ion-item>
 
-  <section class="acc-btn">
-    <ion-toolbar>
-      <ion-button  expand="block" class="home-btn ">Login</ion-button>
-    </ion-toolbar>
-    
-    </section>
+  <ion-item color="themewhite">
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="password" required></ion-input>
+  </ion-item>
 
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="start-container">
-
-    
-  <div id="startImg"><img src="/sourceImages/logo.png">
+  <div class="acc-btn">
+  <ion-button id="testBtn" expand="block" color="themetext"><div class="whitetext">Login</div></ion-button>
   </div>
+</form>
+
+</div>
 
 
-</section>
