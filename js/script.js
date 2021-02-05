@@ -42,6 +42,23 @@ $("body").on("click", "#login-btn", function () {
   console.log("testBtn clicked!");
 });
 
+//on click to test dummyLOGIN button on home.html
+$("body").on("click", "#dummy-btn", function () {
+  console.log("going to homepage!");
+  $("ion-app").load("home.html");
+});
+
+// on click to test LOGOUT button on signup.html
+$("body").on("click", ".logout-btn", function () {
+  console.log("back to start page!");
+  $("ion-app").load("start.html");
+});
+
+$("body").on("click", ".back-btn", function () {
+  console.log("back to start page!");
+  $("ion-app").load("start.html");
+});
+
 // on click to test signup button on signup.html
 $("body").on("click", "#signup-btn", function () {
   testSign();
@@ -205,3 +222,41 @@ function wrongDetailsAlert() {
   document.body.appendChild(alert);
   return alert.present();
 }
+
+
+
+
+//PAGE NAVIGATION LOAD JS SCRIPTS
+
+// on click to test LOGOUT button on signup.html
+$("body").on("click", "#donated-btn", function () {
+  console.log("back to donateMod page!");
+  $("ion-app").load("donorModule.html");
+});
+
+$("body").on("click", "#donorProf-btn", function () {
+  console.log("back to donor profile page!");
+  $("ion-app").load("donorProf.html");
+});
+
+$("body").on("click", "#tenantInv-btn", function () {
+  console.log("back to tenantModule page!");
+  $("ion-app").load("tenantInv.html");
+});
+
+$("body").on("click", "#tenantProf-btn", function () {
+  console.log("back to tenantProf page!");
+  $("ion-app").load("tenantProf.html");
+});
+
+$("body").on("click", "#tenantCons-btn", function () {
+  console.log("back to tenantCons page!");
+  $("ion-app").load("tenantCons.html");
+});
+
+$("body").on("click", ".tenantInvModal-btn", function () {
+  console.log("back to tenantInvModal page!");
+  $("ion-app").load("tenantInvExtended.html");
+});
+
+//MODAL function NOT WORKING
