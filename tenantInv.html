@@ -1,0 +1,84 @@
+<ion-menu side="start" content-id="main-content">
+    <ion-header>
+        <ion-toolbar color="themetext">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        </div>
+                        <ion-row>
+                            <img id="menuLogo" src="../images/tent.png" alt="tent logo image">
+                            <ion-title class="userName">Davier</ion-title>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ion-item>
+                <ion-icon name="person-circle" slot="start"></ion-icon>
+                <ion-title id="tenantProf-btn">Tenant Profile</ion-title>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="folder" slot="start"></ion-icon>
+                <ion-title id="tenantInv-btn">Tenant Inventory</ion-title>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="create" slot="start"></ion-icon>
+                <ion-title id="tenantCons-btn">Consumables</ion-title>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="newspaper" slot="start"></ion-icon>
+                <ion-title id="tenantUti-btn">Utility Bills</ion-title>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="card" slot="start"></ion-icon>
+                <ion-title id="tenantPayment-btn">Payment Modules</ion-title>
+            </ion-item>
+            
+
+
+            <ion-footer>
+                <ion-toolbar>
+                    <ion-title class="logout-btn">Log Out</ion-title>
+                </ion-toolbar>
+            </ion-footer>
+
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+    <ion-header>
+        <ion-toolbar color="themetext">
+            <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+            <ion-title class="pageTitle" slot="start">Inventory Listing</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-toolbar>
+        <ion-searchbar></ion-searchbar>
+            
+    </ion-toolbar>
+
+    <!--place in Nav content here-->
+
+    <ion-content class="ion-padding">
+                  <table>
+                        <tr><th>Serial</th><th>Donor</th><th>Item</th><th></th></tr>
+                        <tr><td colspan="4"><hr></td></tr>
+                        <tr><td>Item 1</td><td>Item 2</td><td>Item 3</td><td><ion-button class="tenantInvModal-btn" size="small" expand="block">More</ion-button></td></tr>
+                        <tr><td>Item 1</td><td>Item 2</td><td>Item 3</td><td><ion-button size="small" expand="block">More</ion-button></td></tr>
+                        <tr><td>Item 1</td><td>Item 2</td><td>Item 3</td><td><ion-button size="small" expand="block">More</ion-button></td></tr>
+                        <tr><td>Item 1</td><td>Item 2</td><td>Item 3</td><td><ion-button size="small" expand="block">More</ion-button></td></tr>
+                        <tr><td>Item 1</td><td>Item 2</td><td>Item 3</td><td><ion-button size="small" expand="block">More</ion-button></td></tr>
+                        <tr><td>Item 1</td><td>Item 2</td><td>Item 3</td><td><ion-button size="small" expand="block">More</ion-button></td></tr>
+                        <tr><td>Item 1</td><td>Item 2</td><td>Item 3</td><td><ion-button size="small" expand="block">More</ion-button></td></tr>
+                    </table>
+    </ion-content>
+
+</div>

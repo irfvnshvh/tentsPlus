@@ -6,7 +6,7 @@
   --ion-color-themetext-contrast-rgb: 0, 0, 0;
   --ion-color-themetext-shade: #359d72;
   --ion-color-themetext-tint: #50ba8f;
-  --ion-background-color: #dbdbdb;
+  --ion-background-color: #ffffff;
   --ion-color-themewhite: #ffffff;
   --ion-color-themewhite-rgb: 255, 255, 255;
   --ion-color-themewhite-contrast: #000000;
@@ -120,5 +120,44 @@ body {
 .userName {
   width: 10vw;
   padding-bottom: 35%;
+}
+
+.toolbar-title-default {
+  background-color: #659D7A;
+}
+
+
+table{
+  border: none;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+table th 
+{
+  padding-left: 10px;
+  padding-right: 20px;
+  padding-top: 10px;
+  border-collapse: collapse;
+}
+
+table td
+{
+  border-collapse: collapse;
+  padding-left: 10px;
+  padding-right: 20px;
+  padding-top: 10px;
+
+}
+
+table hr{
+  border-top: 0.5px solid rgb(218, 218, 218);
+  width: 150%;
+  margin-left: -20%;
+  box-shadow: var(--box-shadow);
+}
+
+.logout-btn {
+  margin-top: 100%;
 }
 /*# sourceMappingURL=style.css.map */
