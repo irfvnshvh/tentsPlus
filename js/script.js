@@ -1,6 +1,5 @@
 // on document ready
 $(document).ready(function () {
-
   console.log("ready!");
   // Loan in start.html on document ready
   var userID;
@@ -8,11 +7,13 @@ $(document).ready(function () {
   //Variable to store API data
   var dataArray;
 
+  //set current modal to null
+  let currentModal = null;
+
   $("ion-app").load("start.html");
 
   //run stay logged in function
   staylogged();
-
 }); // End of document ready
 
 // on click login button, load login.html
@@ -89,11 +90,10 @@ function gotoPage() {
 function staylogged() {
   // if localstorage DON'T HAVE login info
   if (localStorage.getItem("storedPhone") === null) {
-
     console.log("no stay logged in!");
   }
   // if localstore HAS login info
-  else{
+  else {
     // Set localstorage value into var
     userID = localStorage.getItem("storedID");
     var storedPhone = localStorage.getItem("storedPhone");
@@ -118,23 +118,22 @@ function staylogged() {
           if (storedPass == dataArray[i].Address) {
             console.log("Stay logged in success!");
             return;
-          } 
+          }
         }
       }
-      // end of for loop         
+      // end of for loop
     });
   }
-  
 }
 
 //------------------ End of stay logged in function -----------------------------
 
 //-------------------- Start of log out function --------------------------------
 
-function logout(){
-  localStorage.removeItem('storedID');
-  localStorage.removeItem('storedPhone');
-  localStorage.removeItem('storedPass');
+function logout() {
+  localStorage.removeItem("storedID");
+  localStorage.removeItem("storedPhone");
+  localStorage.removeItem("storedPass");
 
   //redirect to login page here
   $("ion-app").load("start.html");
@@ -194,9 +193,9 @@ function testLog() {
             userID = dataArray[i].ID;
             //console.log("User ID is " + userID);
 
-            localStorage.setItem('storedID', userID);
-            localStorage.setItem('storedPhone', enteredPhone);
-            localStorage.setItem('storedPass', enteredPass);
+            localStorage.setItem("storedID", userID);
+            localStorage.setItem("storedPhone", enteredPhone);
+            localStorage.setItem("storedPass", enteredPass);
 
             console.log("Login success!");
             return;
@@ -351,8 +350,97 @@ $("body").on("click", "#tenantCons-btn", function () {
 });
 
 $("body").on("click", ".tenantInvModal-btn", function () {
-  console.log("back to tenantInvModal page!");
-  $("ion-app").load("tenantInvExtended.html");
+  console.log("Created tenant inventory modal!");
+  //$("ion-app").load("tenantInvExtended.html");
+  createTenantInvModal();
+});
+
+$("body").on("click", "#closeModal", function () {
+  console.log("Closed modal!");
+  //$("ion-app").load("tenantInv.html");
+  dismissModal();
 });
 
 //MODAL function NOT WORKING
+
+//----- Modal for view more tenant inventory ------------------------------------
+
+customElements.define(
+  "tenant-inv-modal",
+  class ModalContent extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `
+
+      <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Modal Content</ion-title>
+        <ion-buttons slot="end">
+          <ion-button id="closeModal">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content fullscreen>
+      <ion-list>
+        <ion-item>
+          <ion-label><h2>Serial</h2></ion-label>
+          <ion-label><p>0001</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>Donor</h2></ion-label>
+          <ion-label><p>0001</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>Item</h2></ion-label>
+          <ion-label><p>0001</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>Location</h2></ion-label>
+          <ion-label><p>0001</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>Price</h2></ion-label>
+          <ion-label><p>0001</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>History</h2></ion-label>
+          <ion-label><p>0001</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>Status</h2></ion-label>
+          <ion-label><p>0001</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>Issued</h2></ion-label>
+          <ion-label><p>0001</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>Assign</h2></ion-label>
+          <ion-label><p>0001</p></ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    
+    `;
+    }
+  }
+);
+
+//function to create tenant inventory modal
+async function createTenantInvModal() {
+  const modal = await modalController.create({
+    component: 'tenant-inv-modal',
+    cssClass: 'tenantInvModal'
+  });
+
+  await modal.present();
+  currentModal = modal;
+}
+
+//----- End of modal for view more tenant inventory --------------------
+
+//function to dismiss modal
+function dismissModal() {
+  if (currentModal) {
+    currentModal.dismiss().then(() => { currentModal = null; });
+  }
+}
