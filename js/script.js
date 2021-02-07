@@ -1,8 +1,11 @@
 // on document ready
 $(document).ready(function () {
   console.log("ready!");
-  // Loan in start.html on document ready
+  
+  //create variables for localstorage
   var userID;
+  var storedPhone;
+  var storedPass;
 
   //Variable to store API data
   var dataArray;
@@ -10,6 +13,7 @@ $(document).ready(function () {
   //set current modal to null
   let currentModal = null;
 
+// Loan in start.html on document ready
   $("ion-app").load("start.html");
 
   //run stay logged in function
@@ -36,10 +40,11 @@ $("body").on("click", ".back-btn", function () {
 
 // remove this after finishing with login function
 // this one brings u directly into main page
+/*
 $("body").on("click", ".home-btn", function () {
   console.log("going to homepage!");
   $("ion-app").load("home.html");
-});
+});*/
 
 $("body").on("click", "#pay-btn", function () {
   console.log("going to homepage!");
@@ -50,7 +55,8 @@ $("body").on("click", "#pay-btn", function () {
 $("body").on("click", "#login-btn", function () {
   testLog();
   //gotoPage();
-  console.log("testBtn clicked!");
+  console.log("login button clicked!");
+  
 });
 
 //on click to test dummyLOGIN button on home.html
@@ -96,8 +102,8 @@ function staylogged() {
   else {
     // Set localstorage value into var
     userID = localStorage.getItem("storedID");
-    var storedPhone = localStorage.getItem("storedPhone");
-    var storedPass = localStorage.getItem("storedPass");
+    storedPhone = localStorage.getItem("storedPhone");
+    storedPass = localStorage.getItem("storedPass");
 
     // settings for the API
     var settings = {
@@ -117,6 +123,7 @@ function staylogged() {
         if (storedPhone == dataArray[i].Name) {
           if (storedPass == dataArray[i].Address) {
             console.log("Stay logged in success!");
+            $("ion-app").load("home.html");
             return;
           }
         }
@@ -198,6 +205,7 @@ function testLog() {
             localStorage.setItem("storedPass", enteredPass);
 
             console.log("Login success!");
+            $("ion-app").load("home.html");
             return;
           } else {
             //invalid password
@@ -295,6 +303,16 @@ function testSign() {
 
 //--------------------- End of login function -------------------------------
 
+// load tenant profile details
+
+function loadTenantProfile(){
+
+  document.getElementById('tenantName').innerHTML = localStorage.getItem('storedPhone');
+  document.getElementById('tenantID').innerHTML = localStorage.getItem('storedID');
+  document.getElementById('tenantAddress').innerHTML = localStorage.getItem('storedPass');
+  
+}
+
 // Alert function for when input field is empty
 function emptyAlert() {
   const alert = document.createElement("ion-alert");
@@ -341,7 +359,10 @@ $("body").on("click", "#tenantInv-btn", function () {
 
 $("body").on("click", "#tenantProf-btn", function () {
   console.log("back to tenantProf page!");
-  $("ion-app").load("tenantProf.html");
+  $("ion-app").load("tenantProf.html", function(){
+    loadTenantProfile();
+  });
+  
 });
 
 $("body").on("click", "#tenantCons-btn", function () {
