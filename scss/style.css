@@ -126,4 +126,12 @@ body {
 .test {
   --background: blue;
 }
+
+.infoTable {
+  width: 100%;
+}
+
+.infoCell {
+  text-align: center;
+}
 /*# sourceMappingURL=style.css.map */

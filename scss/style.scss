@@ -136,6 +136,7 @@ body {
 
 //----------------------End of login.html------------------------------
 
+
 //----------------------Start of signup.html---------------------------
 
 //----------------------End of signup.html-----------------------------
@@ -153,4 +154,22 @@ body {
 
 .test{
   --background: blue;
+}
+
+.infoTable{
+  //background-color: green;
+  width: 100%;
+}
+
+.infoCell{
+  //background-color: red;
+  text-align: center;
+}
+
+.infoButton{
+  //background-color: blue;
+}
+
+// Edit the css for tenant inventory modal here
+.tenantInvModal .modal-wrapper {
 }
