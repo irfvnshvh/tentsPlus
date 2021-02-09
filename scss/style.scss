@@ -2,7 +2,7 @@
 $mainFont: "SFProDisplay";
 
 // Var for main green colour
-$mainGreen: #659D7A;
+$mainGreen: #659d7a;
 
 $iconSize: 10vw;
 
@@ -15,7 +15,7 @@ $iconSize: 10vw;
   --ion-color-themetext-shade: #359d72;
   --ion-color-themetext-tint: #50ba8f;
   --ion-background-color: #ffffff;
-  --ion-toolbar-color: #659D7A;
+  --ion-toolbar-color: #659d7a;
 
   --ion-color-themewhite: #ffffff;
   --ion-color-themewhite-rgb: 255, 255, 255;
@@ -101,13 +101,13 @@ body {
   margin-top: 15px;
 }
 
-#gotoSignup{
-    color: white;
-    font-size: 20px;
+#gotoSignup {
+  color: white;
+  font-size: 20px;
 }
 
-.greentext{
-    color: $mainGreen;
+.greentext {
+  color: $mainGreen;
 }
 
 //----------------------End of start.html-----------------------------
@@ -116,30 +116,28 @@ body {
 
 // Container for login.html
 .login-container {
-    position: relative;
-    text-align: center;
-    align-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: white;
+  position: relative;
+  text-align: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: white;
 }
 
-.whitetext{
-    color: white;
+.whitetext {
+  color: white;
 }
 
-.input{
-    background: white;
+.input {
+  background: white;
 }
-
-
 
 //----------------------End of login.html------------------------------
 
-
-//----------------------Start of signup.html---------------------------
-
-//----------------------End of signup.html-----------------------------
+.entry{
+  border-top: 1px solid grey;
+  padding-bottom: 5px;
+}
 
 #menuLogo {
   width: 10vw;
@@ -152,24 +150,28 @@ body {
   padding-bottom: 35%;
 }
 
-.test{
+.test {
   --background: blue;
 }
 
-.infoTable{
+.infoTable {
   //background-color: green;
   width: 100%;
 }
 
-.infoCell{
+.infoCell {
   //background-color: red;
   text-align: center;
 }
 
-.infoButton{
+.infoButton {
   //background-color: blue;
 }
 
-// Edit the css for tenant inventory modal here
-.tenantInvModal .modal-wrapper {
+// Edit the css for update password modal here
+.updatePasswordModal .modal-wrapper{
+  height: 45%;
+  top: 55%;
+  position: absolute;
+  display: block;
 }
