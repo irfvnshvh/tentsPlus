@@ -108,16 +108,7 @@
                 <br>
                 </ion-col>
             </ion-row>
-            <ion-row>
-                <ion-col>
-                <br>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col>
-                <br>
-                </ion-col>
-            </ion-row>
+            
             <ion-row>
                 <ion-col>
                     <ion-footer>
@@ -137,55 +128,63 @@
             <ion-buttons slot="start">
                 <ion-menu-button></ion-menu-button>
             </ion-buttons>
-            <ion-title class="pageTitle" slot="start">Utility Bills</ion-title>
+            <ion-title class="pageTitle" slot="start">Profile</ion-title>
         </ion-toolbar>
     </ion-header>
 
-    <ion-toolbar>
-        <ion-searchbar></ion-searchbar>
+    <!--
+    <ion-item color="themewhite">
+        <ion-title size="small">Name:</ion-title>
+    </ion-item>
+    <ion-item color="themewhite">
+        <ion-title size="small">ID:</ion-title>
+    </ion-item>
+    <ion-item color="themewhite">
+        <ion-title size="small">Username:</ion-title>
+    </ion-item>
+    <ion-item color="themewhite">
+        <ion-title size="small">Address:</ion-title>
+    </ion-item>
+    <ion-item color="themewhite">
+        <ion-title size="small">Unit No:</ion-title>
+    </ion-item>
+    <ion-item color="themewhite">
+        <ion-title size="small">Tenant ID:</ion-title>
+    </ion-item>
+    <ion-item color="themewhite">
+        <ion-title size="small">Co-Tenant:</ion-title>
+    </ion-item>
+    <ion-item color="themewhite">
+        <ion-title size="small">Co-Tenant ID:</ion-title>
+    </ion-item>-->
 
-    </ion-toolbar>
+    <ion-item color="themewhite">
+        <ion-title size="small">Name:</ion-title><div id="cwName">case worker name here</div>
+    </ion-item>
+
+    <!--<ion-item color="themewhite">
+        <ion-title size="small">Address:</ion-title><div id="tenantAddress">address here</div>
+    </ion-item>-->
+
+    <ion-item color="themewhite">
+        <ion-title size="small">ID:</ion-title><div id="cwID">case worker id here</div>
+    </ion-item>
+
+    <div class="acc-btn">
+        <ion-button id="change-pw" expand="block" color="themetext">
+          <div class="whitetext">Change password</div>
+        </ion-button>
+      </div>
+
+
 
     <!--place in Nav content here-->
 
     <ion-content class="ion-padding">
-        <table class="infoTable">
-            <tr>
-                <th class="infoCell">Bill ID</th>
-                <th class="infoCell">Split</th>
-                <th class="infoCell">Comments</th>
-                <th class="infoCell"></th>
-            </tr>
+        <div id="div1">
 
-            <tr>
-                <td colspan="4">
-                    <hr>
-                </td>
-            </tr>
 
-            <tr>
-
-                <td class="infoCell">Item 1</td>
-                <td class="infoCell">Item 2</td>
-                <td class="infoCell">Item 3</td>
-                <td class="infoButton">
-                    <ion-button class="tenantInvModal-btn" size="small" expand="block" color="themetext">More
-                    </ion-button>
-                </td>
-            </tr>
-
-            <tr>
-
-                <td class="infoCell">Item 1</td>
-                <td class="infoCell">Item 2</td>
-                <td class="infoCell">Item 3</td>
-                <td class="infoButton">
-                    <ion-button class="tenantInvModal-btn" size="small" expand="block" color="themetext">More
-                    </ion-button>
-                </td>
-            </tr>
-
-        </table>
+        </div>
     </ion-content>
 
 </div>
