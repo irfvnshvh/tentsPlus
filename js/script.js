@@ -118,7 +118,7 @@ function staylogged() {
 
     // settings for the API
     var settings = {
-      url: "http://localhost:8100/api/login",
+      url: "http://localhost:8080/api/login",
       method: "GET",
       timeout: 0,
     };
@@ -178,7 +178,7 @@ function testLog() {
   } else {
     // settings for the API
     var settings = {
-      url: "http://localhost:8100/api/login",
+      url: "http://localhost:8080/api/login",
       method: "GET",
       timeout: 0,
     };
@@ -300,7 +300,7 @@ function testSign() {
     );*/
 
     var settings = {
-      url: `http://localhost:8100/api/signup/add?name=${signName}&address=${signAddress}`,
+      url: `http://localhost:8080/api/signup/add?name=${signName}&address=${signAddress}`,
       method: "POST",
       timeout: 0,
     };
@@ -343,7 +343,7 @@ function changePW() {
         //if new password and confirm password matches
 
         var settings = {
-          "url": `http://localhost:8100/api/update/pw/${userID}?address=${newPW}`,
+          "url": `http://localhost:8080/api/update/pw/${userID}?address=${newPW}`,
           "method": "PUT",
           "timeout": 0,
         };
