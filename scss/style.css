@@ -7,7 +7,7 @@
   --ion-color-themetext-shade: #359d72;
   --ion-color-themetext-tint: #50ba8f;
   --ion-background-color: #ffffff;
-  --ion-toolbar-color: #659D7A;
+  --ion-toolbar-color: #659d7a;
   --ion-color-themewhite: #ffffff;
   --ion-color-themewhite-rgb: 255, 255, 255;
   --ion-color-themewhite-contrast: #000000;
@@ -91,7 +91,7 @@ body {
 }
 
 .greentext {
-  color: #659D7A;
+  color: #659d7a;
 }
 
 .login-container {
@@ -112,14 +112,20 @@ body {
   background: white;
 }
 
+.entry {
+  border-top: 1px solid grey;
+  padding-bottom: 5px;
+}
+
 #menuLogo {
   width: 10vw;
-  margin-left: 8%;
-  margin-top: -8%;
+  margin-left: 10%;
+  padding-bottom: 40%;
 }
 
 .userName {
   width: 10vw;
+  padding-bottom: 35%;
 }
 
 .test {
@@ -132,5 +138,12 @@ body {
 
 .infoCell {
   text-align: center;
+}
+
+.updatePasswordModal .modal-wrapper {
+  height: 45%;
+  top: 55%;
+  position: absolute;
+  display: block;
 }
 /*# sourceMappingURL=style.css.map */
