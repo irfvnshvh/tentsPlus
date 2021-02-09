@@ -377,19 +377,21 @@ $("body").on("click", "#tenantCons-btn", function () {
   $("ion-app").load("tenantCons.html");
 });
 
+$("body").on("click", "#tenantPayment-btn", function () {
+  console.log("back to tenantPayment page!");
+  $("ion-app").load("tenantPayment.html");
+});
+
+$("body").on("click", "#tenantUtility-btn", function () {
+  console.log("back to tenantUtility page!");
+  $("ion-app").load("tenantUtility.html");
+});
+
 $("body").on("click", ".tenantInvModal-btn", function () {
   console.log("Created tenant inventory modal!");
   //$("ion-app").load("tenantInvExtended.html");
   createTenantInvModal();
 });
-
-$("body").on("click", "#closeModal", function () {
-  console.log("Closed modal!");
-  //$("ion-app").load("tenantInv.html");
-  dismissModal();
-});
-
-//MODAL function NOT WORKING
 
 //----- Modal for view more tenant inventory ------------------------------------
 
@@ -453,6 +455,8 @@ customElements.define(
   }
 );
 
+
+
 //function to create tenant inventory modal
 async function createTenantInvModal() {
   const modal = await modalController.create({
@@ -466,9 +470,18 @@ async function createTenantInvModal() {
 
 //----- End of modal for view more tenant inventory --------------------
 
+//close modal using button
+$("body").on("click", "#closeModal", function () {
+  console.log("Closed modal!");
+  //$("ion-app").load("tenantInv.html");
+  dismissModal();
+});
+
 //function to dismiss modal
 function dismissModal() {
   if (currentModal) {
     currentModal.dismiss().then(() => { currentModal = null; });
   }
 }
+
+
