@@ -114,13 +114,12 @@ body {
 
 #menuLogo {
   width: 10vw;
-  margin-left: 10%;
-  padding-bottom: 40%;
+  margin-left: 8%;
+  margin-top: -8%;
 }
 
 .userName {
   width: 10vw;
-  padding-bottom: 35%;
 }
 
 .test {

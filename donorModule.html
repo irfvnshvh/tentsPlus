@@ -16,25 +16,43 @@
         </ion-toolbar>
     </ion-header>
     <ion-content>
-        <ion-list>
-            <ion-item>
-                <ion-icon name="log-in" slot="start"></ion-icon>
-                <ion-title id="donorProf-btn">Donor Profile</ion-title>
-            </ion-item>
-            <ion-item>
-                <ion-icon name="folder" slot="start"></ion-icon>
-                <ion-title id="donated-btn">Items Donated</ion-title>
-            </ion-item>
-            
-
-
-            <ion-footer>
-                <ion-toolbar>
-                    <ion-title class="logout-btn">Log Out</ion-title>
-                </ion-toolbar>
-            </ion-footer>
-
-        </ion-list>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-icon name="person-circle" slot="start"></ion-icon>
+                        <ion-title id="donorProf-btn">Donor Profile</ion-title>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-icon name="folder" slot="start"></ion-icon>
+                        <ion-title id="donated-btn">Items Donated</ion-title>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-footer>
+                        <ion-toolbar>
+                            <ion-title class="logout-btn">Log Out</ion-title>
+                        </ion-toolbar>
+                    </ion-footer>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
     </ion-content>
 </ion-menu>
 

@@ -59,10 +59,17 @@ $("body").on("click", "#login-btn", function () {
   
 });
 
-//on click to test dummyLOGIN button on home.html
+//DUMMY LOGINSSSSSS
+//on click to test dummyLOGIN AS CASE WORKER button on home.html
 $("body").on("click", "#dummy-btn", function () {
   console.log("going to homepage!");
   $("ion-app").load("home.html");
+});
+
+//on click to test dummyLOGIN AS DONOR button on home.html
+$("body").on("click", "#dummy2-btn", function () {
+  console.log("going to homepage!");
+  $("ion-app").load("donorModule.html");
 });
 
 // on click to test LOGOUT button on signup.html
@@ -339,9 +346,7 @@ function wrongDetailsAlert() {
   return alert.present();
 }
 
-//PAGE NAVIGATION LOAD JS SCRIPTS
-
-// on click to test LOGOUT button on signup.html
+//DONOR NAVIGATION LOAD JS SCRIPTS
 $("body").on("click", "#donated-btn", function () {
   console.log("back to donateMod page!");
   $("ion-app").load("donorModule.html");
@@ -352,6 +357,8 @@ $("body").on("click", "#donorProf-btn", function () {
   $("ion-app").load("donorProf.html");
 });
 
+
+//TENANT CASE WORKER NAVIGATION LOAD JS SCRIPTS
 $("body").on("click", "#tenantInv-btn", function () {
   console.log("back to tenantModule page!");
   $("ion-app").load("tenantInv.html");
