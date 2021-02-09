@@ -4,6 +4,7 @@
             <ion-grid>
                 <ion-row>
                     <ion-col>
+                        </div>
                         <ion-row>
                             <img id="menuLogo" src="./images/tent.png" alt="tent logo image">
                             <ion-title class="userName">Davier</ion-title>
@@ -11,6 +12,7 @@
                     </ion-col>
                 </ion-row>
             </ion-grid>
+
         </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -134,19 +136,55 @@
             <ion-buttons slot="start">
                 <ion-menu-button></ion-menu-button>
             </ion-buttons>
-            <ion-title class="pageTitle" slot="start">Home</ion-title>
+            <ion-title class="pageTitle" slot="start">Utility Bills</ion-title>
         </ion-toolbar>
     </ion-header>
-    
 
+    <ion-toolbar>
+        <ion-searchbar></ion-searchbar>
+
+    </ion-toolbar>
 
     <!--place in Nav content here-->
 
     <ion-content class="ion-padding">
-        <div id="div1">
+        <table class="infoTable">
+            <tr>
+                <th class="infoCell">Bill ID</th>
+                <th class="infoCell">Split</th>
+                <th class="infoCell">Comments</th>
+                <th class="infoCell"></th>
+            </tr>
 
+            <tr>
+                <td colspan="4">
+                    <hr>
+                </td>
+            </tr>
 
-        </div>
+            <tr>
+
+                <td class="infoCell">Item 1</td>
+                <td class="infoCell">Item 2</td>
+                <td class="infoCell">Item 3</td>
+                <td class="infoButton">
+                    <ion-button class="tenantInvModal-btn" size="small" expand="block" color="themetext">More
+                    </ion-button>
+                </td>
+            </tr>
+
+            <tr>
+
+                <td class="infoCell">Item 1</td>
+                <td class="infoCell">Item 2</td>
+                <td class="infoCell">Item 3</td>
+                <td class="infoButton">
+                    <ion-button class="tenantInvModal-btn" size="small" expand="block" color="themetext">More
+                    </ion-button>
+                </td>
+            </tr>
+
+        </table>
     </ion-content>
 
 </div>
