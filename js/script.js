@@ -6,6 +6,7 @@ $(document).ready(function () {
   var userID;
   var storedPhone;
   var storedPass;
+  var storedAccType;
 
   var storedSplit;
 
@@ -67,7 +68,7 @@ $("body").on("click", "#login-btn", function () {
 //on click to test dummyLOGIN AS CASE WORKER button on home.html
 $("body").on("click", "#dummy-btn", function () {
   console.log("going to homepage!");
-  $("ion-app").load("home.html");
+  $("ion-app").load("tenantFamily.html");
 });
 
 //on click to test dummyLOGIN AS DONOR button on home.html
@@ -104,8 +105,107 @@ $("body").on("click", "#logout-btn", function () {
 });
 
 function gotoPage() {
-  $("ion-app").load("home.html");
+  $("ion-app").load("tenantFamily.html");
 }
+
+// redirect to home page after confirm successPWChange function
+$("body").on("click", ".success", function () {
+  console.log("success button clicked");
+  $("ion-app").load("tenantFamily.html");
+});
+
+// redirect to bills page after confirm successSplitChange function
+$("body").on("click", ".successSplit", function () {
+  console.log("success split button clicked");
+  $("ion-app").load("tenantUtility.html");
+});
+
+//DONOR NAVIGATION LOAD JS SCRIPTS
+$("body").on("click", "#donated-btn", function () {
+  console.log("back to donateMod page!");
+  $("ion-app").load("donorModule.html");
+});
+
+$("body").on("click", "#donorProf-btn", function () {
+  console.log("back to donor profile page!");
+  $("ion-app").load("donorProf.html");
+});
+
+//TENANT CASE WORKER NAVIGATION LOAD JS SCRIPTS
+$("body").on("click", "#tenantInv-btn", function () {
+  console.log("back to tenantModule page!");
+  $("ion-app").load("tenantInv.html");
+});
+
+$("body").on("click", "#tenantFamily-btn", function () {
+  console.log("back to tenantFamily page!");
+  $("ion-app").load("tenantFamily.html");
+  /*$("ion-app").load("tenantFamily.html", function () {
+    loadTenantFamilyInfo();
+  });*/
+});
+
+$("body").on("click", "#tenantProf-btn", function () {
+  console.log("back to tenantProf page!");
+  $("ion-app").load("tenantProf.html", function () {
+    loadTenantProfile();
+  });
+});
+
+$("body").on("click", "#tenantCons-btn", function () {
+  console.log("back to tenantCons page!");
+  $("ion-app").load("tenantCons.html");
+});
+
+$("body").on("click", "#tenantPayment-btn", function () {
+  console.log("back to tenantPayment page!");
+  $("ion-app").load("tenantPayment.html");
+});
+
+$("body").on("click", "#tenantUtility-btn", function () {
+  console.log("back to tenantUtility page!");
+  $("ion-app").load("tenantUtility.html");
+});
+
+$("body").on("click", ".tenantInvModal-btn", function () {
+  console.log("Created tenant inventory modal!");
+  createCWInvModal();
+});
+
+$("body").on("click", ".consumeModal-btn", function () {
+  console.log("Created consumable modal!");
+  createConsumablesCWModal();
+});
+
+$("body").on("click", ".billModal-btn", function () {
+  console.log("Created bill modal!");
+  createBillCWModal();
+});
+
+$("body").on("click", ".changeSplit-btn", function () {
+  console.log("Created split modal!");
+  createSplit();
+});
+
+$("body").on("click", ".paymentCWModal-btn", function () {
+  console.log("Created payment modal!");
+  createPayCWModal();
+});
+
+
+$("body").on("click", "#change-pw", function () {
+  console.log("Created update caseworker password modal!");
+  createUpdateCasePWModal();
+});
+
+$("body").on("click", "#updatePW-btn", function () {
+  changePW();
+});
+
+$("body").on("click", "#updateSplit-btn", function () {
+  changeSplit();
+  //console.log("change split");
+});
 
 //------------------ Start of stay logged in function ----------------------------
 
@@ -138,8 +238,27 @@ function staylogged() {
       for (var i = 0; i < dataArray.length; i++) {
         if (storedPhone == dataArray[i].Name) {
           if (storedPass == dataArray[i].Address) {
-            console.log("Stay logged in success!");
-            $("ion-app").load("home.html");
+            /* condition for account type
+            if("Admin" == dataArray[i].AccType){
+              console.log("stay logged in as Admin!");
+              $("ion-app").load("AdminHome.html");
+              return;
+            }
+            else if("Caseworker" == dataArray[i].AccType){
+              $("ion-app").load("tenantFamily.html", function () {
+              loadTenantFamilyInfo();
+              console.log("Stay logged in as case worker!");
+              return;
+            });
+              
+            }
+            else if("Donor" == dataArray[i].AccType){
+              console.log("stay logged in as Donor!");
+              $("ion-app").load("donorModule.html");
+              return;
+            }*/
+            
+            $("ion-app").load("tenantFamily.html");
             return;
           }
         }
@@ -194,10 +313,7 @@ function testLog() {
       //nid to parse to change from string to array
       dataArray = JSON.parse(response);
 
-      //console.log(response);
       console.log(dataArray);
-      //console.log("response length is " + response.length);
-      //console.log("dataArray length is " + dataArray.length);
 
       //store user entered value into another var
       // this is the var to store into database
@@ -214,14 +330,32 @@ function testLog() {
 
             // store login info into localstorage here ---------------------------
             userID = dataArray[i].ID;
-            //console.log("User ID is " + userID);
+            //storedAccType = dataArray[i].AccType;
 
             localStorage.setItem("storedID", userID);
             localStorage.setItem("storedPhone", enteredPhone);
             localStorage.setItem("storedPass", enteredPass);
+            //localStorage.setItem("storedAccType", storedAccType);
+
+             /* condition for account type
+            if("Admin" == dataArray[i].AccType){
+              console.log("stay logged in as Admin!");
+              $("ion-app").load("AdminHome.html");
+              return;
+            }
+            else if("Caseworker" == dataArray[i].AccType){
+              console.log("stay logged in as Case worker!");
+              $("ion-app").load("tenantFamily.html");
+              return;
+            }
+            else if("Donor" == dataArray[i].AccType){
+              console.log("stay logged in as Donor!");
+              $("ion-app").load("donorModule.html");
+              return;
+            }*/
 
             console.log("Login success!");
-            $("ion-app").load("home.html");
+            $("ion-app").load("tenantFamily.html");
             return;
           } else {
             //invalid password
@@ -248,83 +382,10 @@ function testLog() {
 
 //--------------------- End of login function -------------------------------
 
-//--------------------- Start of sign up function -------------------------------
-
-// Create variables to store signup details
-/*var signEnterFirst;
-var signEnterLast;
-var signEnterPhone;
-var signEnterPass;
-var signEnterConPass;*/
-
-var signName;
-var signAddress;
-
-function testSign() {
-  // Assign user input values into variables
-  /*signEnterFirst = $("#signFirst").val();
-  signEnterLast = $("#signLast").val();
-  signEnterPhone = $("#signPhone").val();
-  signEnterPass = $("#signPass").val();
-  signEnterConPass = $("#signConPass").val();*/
-
-  signName = $("#signName").val();
-  signAddress = $("#signAddress").val();
-
-  // if user input is empty return empty alert function
-  if (
-    /*signEnterFirst == "" ||
-    signEnterLast == "" ||
-    signEnterPhone == "" ||
-    signEnterPass == "" ||
-    signEnterConPass == ""*/
-
-    signName == "" ||
-    signAddress == ""
-  ) {
-    console.log("is empty/null");
-    emptyAlert();
-  }
-  // else if not empty, run store function
-  else {
-    /*logSignFirst = signEnterFirst;
-    logSignLast = signEnterLast;
-    logSignPhone = signEnterPhone;
-    logSignPass = signEnterPass;
-    logSignConPass = signEnterConPass;
-    console.log(
-      logSignFirst +
-        " " +
-        logSignLast +
-        " " +
-        logSignPhone +
-        " " +
-        logSignPass +
-        " " +
-        logSignConPass
-    );*/
-
-    var settings = {
-      url: `http://localhost:8080/api/signup/add?name=${signName}&address=${signAddress}`,
-      method: "POST",
-      timeout: 0,
-    };
-
-    $.ajax(settings).done(function (response) {
-      console.log("success sign");
-    });
-    // End of API function
-  } // End of else if sign in field not empty
-}
-
-//--------------------- End of login function -------------------------------
-
 // load tenant profile details
 
 function loadTenantProfile() {
-  document.getElementById("cwName").innerHTML = localStorage.getItem(
-    "storedPhone"
-  );
+  document.getElementById("cwName").innerHTML = localStorage.getItem("storedPhone");
   document.getElementById("cwID").innerHTML = localStorage.getItem("storedID");
   //document.getElementById('tenantAddress').innerHTML = localStorage.getItem('storedPass');
 }
@@ -469,101 +530,6 @@ function successSplitChange() {
   return alert.present();
 }
 
-// redirect to home page after confirm successPWChange function
-$("body").on("click", ".success", function () {
-  console.log("success button clicked");
-  $("ion-app").load("home.html");
-});
-
-// redirect to bills page after confirm successSplitChange function
-$("body").on("click", ".successSplit", function () {
-  console.log("success split button clicked");
-  $("ion-app").load("tenantUtility.html");
-});
-
-//DONOR NAVIGATION LOAD JS SCRIPTS
-$("body").on("click", "#donated-btn", function () {
-  console.log("back to donateMod page!");
-  $("ion-app").load("donorModule.html");
-});
-
-$("body").on("click", "#donorProf-btn", function () {
-  console.log("back to donor profile page!");
-  $("ion-app").load("donorProf.html");
-});
-
-//TENANT CASE WORKER NAVIGATION LOAD JS SCRIPTS
-$("body").on("click", "#tenantInv-btn", function () {
-  console.log("back to tenantModule page!");
-  $("ion-app").load("tenantInv.html");
-});
-
-$("body").on("click", "#tenantFamily-btn", function () {
-  console.log("back to tenantFamily page!");
-  $("ion-app").load("tenantFamily.html");
-});
-
-$("body").on("click", "#tenantProf-btn", function () {
-  console.log("back to tenantProf page!");
-  $("ion-app").load("tenantProf.html", function () {
-    loadTenantProfile();
-  });
-});
-
-$("body").on("click", "#tenantCons-btn", function () {
-  console.log("back to tenantCons page!");
-  $("ion-app").load("tenantCons.html");
-});
-
-$("body").on("click", "#tenantPayment-btn", function () {
-  console.log("back to tenantPayment page!");
-  $("ion-app").load("tenantPayment.html");
-});
-
-$("body").on("click", "#tenantUtility-btn", function () {
-  console.log("back to tenantUtility page!");
-  $("ion-app").load("tenantUtility.html");
-});
-
-$("body").on("click", ".tenantInvModal-btn", function () {
-  console.log("Created tenant inventory modal!");
-  createCWInvModal();
-});
-
-$("body").on("click", ".consumeModal-btn", function () {
-  console.log("Created consumable modal!");
-  createConsumablesCWModal();
-});
-
-$("body").on("click", ".billModal-btn", function () {
-  console.log("Created bill modal!");
-  createBillCWModal();
-});
-
-$("body").on("click", ".changeSplit-btn", function () {
-  console.log("Created split modal!");
-  createSplit();
-});
-
-$("body").on("click", ".paymentCWModal-btn", function () {
-  console.log("Created payment modal!");
-  createPayCWModal();
-});
-
-
-$("body").on("click", "#change-pw", function () {
-  console.log("Created update caseworker password modal!");
-  createUpdateCasePWModal();
-});
-
-$("body").on("click", "#updatePW-btn", function () {
-  changePW();
-});
-
-$("body").on("click", "#updateSplit-btn", function () {
-  changeSplit();
-  //console.log("change split");
-});
 
 //----- Modal for view more tenant inventory ------------------------------------
 
