@@ -1,0 +1,131 @@
+<ion-menu side="start" content-id="main-content">
+    <ion-header>
+        <ion-toolbar color="themetext">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        </div>
+                        <ion-row>
+                            <img id="menuLogo" src="./images/tent.png" alt="tent logo image">
+                            <ion-title class="userName">Davier</ion-title>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-footer>
+                        <ion-toolbar>
+                            <ion-title class="logout-btn">Log Out</ion-title>
+                        </ion-toolbar>
+                    </ion-footer>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+    <ion-header>
+        <ion-toolbar color="themetext">
+            <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+            <ion-title class="pageTitle" slot="start">Receipt</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <!--place in Nav content here-->
+
+    <ion-content class="ion-padding">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-item id="receiptContainer" expand="block" color="themetext">
+                       
+                        <div id="receiptHeader" class="whitetext"> <img id="receiptLogo" src="./images/tent.png" alt="tent logo image"> Tenants Plus eReceipt</div>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <div class="receiptText">Invoice</div>
+                    <div id="Payment_id">Payment Bill</div>
+                    <div class="receiptText">Name: </div>
+                    <div id="tenant_ id">ID: </div>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col></ion-col>
+                <ion-col id="receiptLeftCol">
+                    <div id="Payment_id">Bill ID: 7268</div>
+                    <div class="receiptText">Date: 29/02/2021</div>
+                </ion-col>
+            </ion-row>
+
+            <ion-list>
+                <ion-item>
+                    <ion-label>Description</ion-label>
+                    <ion-label id="receiptLeftCol">Amount</ion-label>
+                </ion-item>
+
+                <ion-row>
+
+                    <ion-col>
+                        <div class="receiptText">Amount Owe</div>
+                    </ion-col>
+                    <ion-col id="receiptLeftCol">
+                        <div id="amount_owe">$220.00 </div>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+
+                    <ion-col>
+                        <div class="receiptText">Rental Deposit</div>
+                    </ion-col>
+                    <ion-col id="receiptLeftCol">
+                        <div id="rental_deposit">$300.00 </div>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+
+                    <ion-col>
+                        <div class="receiptText">Deposit</div>
+                    </ion-col>
+                    <ion-col id="receiptLeftCol">
+                        <div id="deposit_deduction">- </div>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+
+                    <ion-col>
+                        <div class="receiptText">Negligence Charges</div>
+                    </ion-col>
+                    <ion-col id="receiptLeftCol">
+                        <div id="negligence_charge">$0</div>
+                    </ion-col>
+                </ion-row>
+
+                <ion-item>
+                    <ion-label></ion-label>
+                </ion-item>
+            </ion-list>
+
+            <ion-item>
+                <ion-label>Total Charges</ion-label>
+                <ion-label id="receiptLeftCol">$515.00</ion-label>
+            </ion-item>
+        </ion-grid>
+    </ion-content>
+
+</div>
