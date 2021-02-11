@@ -76,6 +76,11 @@ $("body").on("click", "#dummy2-btn", function () {
   $("ion-app").load("donorModule.html");
 });
 
+$("body").on("click", "#dummy3-btn", function () {
+  console.log("going to eReceipt!");
+  $("ion-app").load("eReceipt.html");
+});
+
 // on click to test LOGOUT button on signup.html
 $("body").on("click", ".logout-btn", function () {
   console.log("back to start page!");
@@ -491,6 +496,11 @@ $("body").on("click", "#donorProf-btn", function () {
 $("body").on("click", "#tenantInv-btn", function () {
   console.log("back to tenantModule page!");
   $("ion-app").load("tenantInv.html");
+});
+
+$("body").on("click", "#tenantFamily-btn", function () {
+  console.log("back to tenantFamily page!");
+  $("ion-app").load("tenantFamily.html");
 });
 
 $("body").on("click", "#tenantProf-btn", function () {
