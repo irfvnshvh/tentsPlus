@@ -663,17 +663,17 @@ customElements.define(
 
       <ion-item color="themewhite">
       <ion-label position="floating">Current password</ion-label>
-      <ion-input id="enteredPW" type="text" maxlength="8" required></ion-input>
+      <ion-input id="enteredPW" type="password" maxlength="8" required></ion-input>
     </ion-item>
 
     <ion-item color="themewhite">
       <ion-label position="floating">New password</ion-label>
-      <ion-input id="newPW" type="text" maxlength="8" required></ion-input>
+      <ion-input id="newPW" type="password" maxlength="8" required></ion-input>
     </ion-item>
 
     <ion-item color="themewhite">
       <ion-label position="floating">Confirm password</ion-label>
-      <ion-input id="confirmPW" type="text" maxlength="8" required></ion-input>
+      <ion-input id="confirmPW" type="password" maxlength="8" required></ion-input>
     </ion-item>
 
     <div class="acc-btn">
