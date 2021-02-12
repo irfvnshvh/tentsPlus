@@ -120,7 +120,7 @@ body {
 #menuLogo {
   width: 10vw;
   padding-bottom: 40%;
-  margin: 0 auto;
+  margin-left: 5%;
 }
 
 #receiptLogo {
@@ -137,7 +137,12 @@ body {
 
 
 #receiptLeftCol {
-    text-align: right;
+    text-align: left;
+}
+
+
+#receiptRightCol {
+  text-align: right;
 }
 
 #receiptContainer {
