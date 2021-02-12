@@ -18,16 +18,8 @@
             <ion-row>
                 <ion-col>
                     <ion-item>
-                        <ion-icon name="people-circle" slot="start"></ion-icon>
-                        <ion-title id="tenantFamily-btn">Family</ion-title>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col>
-                    <ion-item>
                         <ion-icon name="person-circle" slot="start"></ion-icon>
-                        <ion-title id="tenantProf-btn">Profile</ion-title>
+                        <ion-title id="adminDonor-btn">Donor</ion-title>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -35,7 +27,7 @@
                 <ion-col>
                     <ion-item>
                         <ion-icon name="folder" slot="start"></ion-icon>
-                        <ion-title id="tenantInv-btn">Inventory</ion-title>
+                        <ion-title id="adminInv-btn">Inventory</ion-title>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -43,7 +35,7 @@
                 <ion-col>
                     <ion-item>
                         <ion-icon name="create" slot="start"></ion-icon>
-                        <ion-title id="tenantCons-btn">Consumables</ion-title>
+                        <ion-title id="adminCons-btn">Consumables</ion-title>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -51,7 +43,7 @@
                 <ion-col>
                     <ion-item>
                         <ion-icon name="newspaper" slot="start"></ion-icon>
-                        <ion-title id="tenantUtility-btn">Utility Bills</ion-title>
+                        <ion-title id="adminUtility-btn">Utility Bills</ion-title>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -59,18 +51,13 @@
                 <ion-col>
                     <ion-item>
                         <ion-icon name="card" slot="start"></ion-icon>
-                        <ion-title id="tenantPayment-btn">Payment</ion-title>
+                        <ion-title id="adminPayment-btn">Payment</ion-title>
                     </ion-item>
                 </ion-col>
             </ion-row>
             <ion-row>
                 <ion-col>
-                <br>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col>
-                <br>
+                 <br>
                 </ion-col>
             </ion-row>
             <ion-row>
@@ -91,6 +78,16 @@
             <ion-row>
                 <ion-col>
                 <br>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                 <br>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                 <br>
                 </ion-col>
             </ion-row>
             <ion-row>
@@ -113,7 +110,7 @@
             <ion-buttons slot="start">
                 <ion-menu-button></ion-menu-button>
             </ion-buttons>
-            <ion-title class="pageTitle" slot="start">Inventory</ion-title>
+            <ion-title class="pageTitle" slot="start">Tenant</ion-title>
         </ion-toolbar>
     </ion-header>
 
@@ -124,13 +121,14 @@
 
     <!--place in Nav content here-->
 
+    
     <ion-content class="ion-padding">
         <table class="infoTable">
             <tr>
-                <th class="infoCell">Serial</th>
-                <th class="infoCell">Donor</th>
-                <th class="infoCell">Item</th>
-                <th class="infoCell"></th>
+                <th class="infoCell">ID</th>
+                <th class="infoCell">Co-Tenant</th>
+                <th class="infoCell">Unity ID</th>
+                <th class="infoCell">Unit No.</th>
             </tr>
 
             <tr>
@@ -141,36 +139,86 @@
 
             <tr>
 
-                <td class="infoCell">0001</td>
-                <td class="infoCell">Jack</td>
-                <td class="infoCell">Spoon</td>
+                <td class="infoCell">TT00001</td>
+                <td class="infoCell">CT10001</td>
+                <td class="infoCell">U10101</td>
+                <td class="infoCell">#02-410</td>
                 <td class="infoButton">
-                    <ion-button class="tenantInvModal-btn" size="small" expand="block" color="themetext">More
-                    </ion-button>
+                    <ion-icon size="small" name="chevron-forward-outline"></ion-icon>
                 </td>
             </tr>
 
             <tr>
 
-                <td class="infoCell">0002</td>
-                <td class="infoCell">Ah Beng</td>
-                <td class="infoCell">Carpet</td>
+                <td class="infoCell">TT00002</td>
+                <td class="infoCell">CT10002</td>
+                <td class="infoCell">U10101</td>
+                <td class="infoCell">#05-930</td>
                 <td class="infoButton">
-                    <ion-button class="tenantInvModal-btn" size="small" expand="block" color="themetext">More
-                    </ion-button>
+                    <ion-icon size="small" name="chevron-forward-outline"></ion-icon>
                 </td>
             </tr>
 
             <tr>
 
-                <td class="infoCell">0003</td>
-                <td class="infoCell">Ah Long</td>
-                <td class="infoCell">Curtain</td>
+                <td class="infoCell">TT00003</td>
+                <td class="infoCell">CT10003</td>
+                <td class="infoCell">U10101</td>
+                <td class="infoCell">#03-550</td>
                 <td class="infoButton">
-                    <ion-button class="tenantInvModal-btn" size="small" expand="block" color="themetext">More
-                    </ion-button>
+                    <ion-icon size="small" name="chevron-forward-outline"></ion-icon>
                 </td>
             </tr>
+
+            <tr>
+
+                <td class="infoCell">TT00004</td>
+                <td class="infoCell">CT10004</td>
+                <td class="infoCell">U10101</td>
+                <td class="infoCell">#05-460</td>
+                <td class="infoButton">
+                    <ion-icon size="small" name="chevron-forward-outline"></ion-icon>
+                </td>
+            </tr>
+
+            <tr>
+
+                <td class="infoCell">TT00005</td>
+                <td class="infoCell">CT10005</td>
+                <td class="infoCell">U10101</td>
+                <td class="infoCell">#07-610</td>
+                <td class="infoButton">
+                    <ion-icon size="small" name="chevron-forward-outline"></ion-icon>
+                </td>
+            </tr>
+
+            <tr>
+
+                <td class="infoCell">TT00006</td>
+                <td class="infoCell">CT10006</td>
+                <td class="infoCell">U10101</td>
+                <td class="infoCell">#01-230</td>
+                <td class="infoButton">
+                    <ion-icon size="small" name="chevron-forward-outline"></ion-icon>
+                </td>
+            </tr>
+
+        </table>
+    </ion-content>
+
+    <ion-content class="ion-padding">
+        <table class="infoTable">
+            
+
+            <tr>
+                <td colspan="4">
+                    <hr>
+                </td>
+            </tr>
+
+            
+
+            
 
         </table>
     </ion-content>

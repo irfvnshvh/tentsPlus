@@ -82,6 +82,11 @@ $("body").on("click", "#dummy3-btn", function () {
   $("ion-app").load("eReceipt.html");
 });
 
+$("body").on("click", "#dummy4-btn", function () {
+  console.log("going to homepage!");
+  $("ion-app").load("adminModule.html");
+});
+
 // on click to test LOGOUT button on signup.html
 $("body").on("click", ".logout-btn", function () {
   console.log("back to start page!");
@@ -169,6 +174,87 @@ $("body").on("click", "#tenantUtility-btn", function () {
 
 $("body").on("click", ".tenantInvModal-btn", function () {
   console.log("Created tenant inventory modal!");
+  createCWInvModal();
+});
+
+$("body").on("click", ".consumeModal-btn", function () {
+  console.log("Created consumable modal!");
+  createConsumablesCWModal();
+});
+
+$("body").on("click", ".billModal-btn", function () {
+  console.log("Created bill modal!");
+  createBillCWModal();
+});
+
+$("body").on("click", ".changeSplit-btn", function () {
+  console.log("Created split modal!");
+  createSplit();
+});
+
+$("body").on("click", ".paymentCWModal-btn", function () {
+  console.log("Created payment modal!");
+  createPayCWModal();
+});
+
+
+$("body").on("click", "#change-pw", function () {
+  console.log("Created update caseworker password modal!");
+  createUpdateCasePWModal();
+});
+
+$("body").on("click", "#updatePW-btn", function () {
+  changePW();
+});
+
+$("body").on("click", "#updateSplit-btn", function () {
+  changeSplit();
+  //console.log("change split");
+});
+
+
+//Admin NAVIGATION LOAD JS SCRIPTS
+
+$("body").on("click", "#adminModule-btn", function () {
+  console.log("back to adminMod page!");
+  $("ion-app").load("adminModule.html");
+});
+
+$("body").on("click", "#adminInv-btn", function () {
+  console.log("back to adminModule page!");
+  $("ion-app").load("adminInv.html");
+});
+
+$("body").on("click", "#adminFamily-btn", function () {
+  console.log("back to adminFamily page!");
+  $("ion-app").load("adminFamily.html");
+  /*$("ion-app").load("tenantFamily.html", function () {
+    loadTenantFamilyInfo();
+  });*/
+});
+
+$("body").on("click", "#adminDonor-btn", function () {
+  console.log("back to adminDonor page!");
+  $("ion-app").load("adminDonor.html");
+});
+
+$("body").on("click", "#adminCons-btn", function () {
+  console.log("back to adminCons page!");
+  $("ion-app").load("adminCons.html");
+});
+
+$("body").on("click", "#adminPayment-btn", function () {
+  console.log("back to adminPayment page!");
+  $("ion-app").load("adminPayment.html");
+});
+
+$("body").on("click", "#adminUtility-btn", function () {
+  console.log("back to adminUtility page!");
+  $("ion-app").load("adminUtility.html");
+});
+
+$("body").on("click", ".adminInvModal-btn", function () {
+  console.log("Created admin inventory modal!");
   createCWInvModal();
 });
 
