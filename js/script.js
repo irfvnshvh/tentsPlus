@@ -253,19 +253,19 @@ $("body").on("click", "#adminUtility-btn", function () {
   $("ion-app").load("adminUtility.html");
 });
 
-$("body").on("click", ".adminInvModal-btn", function () {
-  console.log("Created admin inventory modal!");
-  createCWInvModal();
+$("body").on("click", ".admin-tenant-modal-btn", function () {
+  console.log("Created admin tenant modal!");
+  createAdminTenantModal();
 });
 
-$("body").on("click", ".consumeModal-btn", function () {
+$("body").on("click", ".consume-admin-Modal-btn", function () {
   console.log("Created consumable modal!");
-  createConsumablesCWModal();
+  createConsumablesAdminModal();
 });
 
-$("body").on("click", ".billModal-btn", function () {
+$("body").on("click", ".billAdminModal-btn", function () {
   console.log("Created bill modal!");
-  createBillCWModal();
+  createBillAdminModal();
 });
 
 $("body").on("click", ".changeSplit-btn", function () {
@@ -273,9 +273,14 @@ $("body").on("click", ".changeSplit-btn", function () {
   createSplit();
 });
 
-$("body").on("click", ".paymentCWModal-btn", function () {
+$("body").on("click", ".pay-admin-modal-btn", function () {
   console.log("Created payment modal!");
-  createPayCWModal();
+  createPayAdminModal();
+});
+
+$("body").on("click", ".inv-admin-modal-btn", function () {
+  console.log("Created payment modal!");
+  createInvAdminModal();
 });
 
 
@@ -343,7 +348,7 @@ function staylogged() {
               $("ion-app").load("donorModule.html");
               return;
             }*/
-            
+
             $("ion-app").load("tenantFamily.html");
             return;
           }
@@ -423,22 +428,22 @@ function testLog() {
             localStorage.setItem("storedPass", enteredPass);
             //localStorage.setItem("storedAccType", storedAccType);
 
-             /* condition for account type
-            if("Admin" == dataArray[i].AccType){
-              console.log("stay logged in as Admin!");
-              $("ion-app").load("AdminHome.html");
-              return;
-            }
-            else if("Caseworker" == dataArray[i].AccType){
-              console.log("stay logged in as Case worker!");
-              $("ion-app").load("tenantFamily.html");
-              return;
-            }
-            else if("Donor" == dataArray[i].AccType){
-              console.log("stay logged in as Donor!");
-              $("ion-app").load("donorModule.html");
-              return;
-            }*/
+            /* condition for account type
+           if("Admin" == dataArray[i].AccType){
+             console.log("stay logged in as Admin!");
+             $("ion-app").load("AdminHome.html");
+             return;
+           }
+           else if("Caseworker" == dataArray[i].AccType){
+             console.log("stay logged in as Case worker!");
+             $("ion-app").load("tenantFamily.html");
+             return;
+           }
+           else if("Donor" == dataArray[i].AccType){
+             console.log("stay logged in as Donor!");
+             $("ion-app").load("donorModule.html");
+             return;
+           }*/
 
             console.log("Login success!");
             $("ion-app").load("tenantFamily.html");
@@ -499,14 +504,14 @@ function changePW() {
           "method": "PUT",
           "timeout": 0,
         };
-        
+
         $.ajax(settings).done(function (response) {
           console.log("password matches, update password");
           successPWChange();
         });
 
 
-        
+
         // update password
       } else {
         //if new password and confirm password DOESNT match
@@ -519,14 +524,14 @@ function changePW() {
   }
 }
 
-function changeSplit(){
+function changeSplit() {
   var enteredSplit = $("#splitAmt").val();
 
-  if(enteredSplit == ""){
+  if (enteredSplit == "") {
     emptyAlert();
     //console.log("empty field");
   }
-  else{
+  else {
     localStorage.setItem("storedSplit", enteredSplit);
     // API update code here as well
 
@@ -535,7 +540,7 @@ function changeSplit(){
     successSplitChange();
 
   }
-  
+
 }
 
 // Alert function for when input field is empty
@@ -636,40 +641,32 @@ customElements.define(
     <ion-content>
       <ion-list>
         <ion-item>
-          <ion-label><h2>SERIAL</h2></ion-label>
-          <ion-label><p>0001</p></ion-label>
-        </ion-item>
-        <ion-item>
           <ion-label><h2>DONOR</h2></ion-label>
-          <ion-label><p>0001</p></ion-label>
+          <ion-label><p>JACK TYLER DR8341</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>ITEM</h2></ion-label>
-          <ion-label><p>0001</p></ion-label>
+          <ion-label><p>KITCHEN SPOON IT1234</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>LOCATION</h2></ion-label>
-          <ion-label><p>0001</p></ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label><h2>PRICE</h2></ion-label>
-          <ion-label><p>0001</p></ion-label>
+          <ion-label><p>TRANSITION PLUS @ <BR>JALAN BUKIT MERAHH <BR>#04-756</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>HISTORY</h2></ion-label>
-          <ion-label><p>0001</p></ion-label>
+          <ion-label><p>LOANED TO ELON TT9372<br></p><p>LOANED TO NOAH TT9372<br></p><p>LOANED TO KHAI TT9372<br></p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>STATUS</h2></ion-label>
-          <ion-label><p>0001</p></ion-label>
+          <ion-label><p>ISSUED</p></ion-label>
         </ion-item>
         <ion-item>
-          <ion-label><h2>ISSUED</h2></ion-label>
-          <ion-label><p>0001</p></ion-label>
+          <ion-label><h2>DATE</h2></ion-label>
+          <ion-label><p>WEDNESDAY</p></ion-label>
         </ion-item>
         <ion-item>
-          <ion-label><h2>ASSIGN</h2></ion-label>
-          <ion-label><p>0001</p></ion-label>
+          <ion-label><h2>REPAIR</h2></ion-label>
+          <ion-label><p>PENDING</p></ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
@@ -1011,6 +1008,337 @@ async function createPayCWModal() {
 
 //----- End of modal for view consumables details --------------------
 
+//----- start of modal for view adminTenant details --------------------
+customElements.define(
+  "admin-tenant-modal",
+  class ModalContent extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `
+
+      <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Inventory Info</ion-title>
+        <ion-buttons slot="end">
+          <ion-button id="closeModal">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item>
+          <ion-label><h2>ID</h2></ion-label>
+          <ion-label><p>TT0819</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>UNIT ID</h2></ion-label>
+          <ion-label><p>UT1010</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>UNIT NO.</h2></ion-label>
+          <ion-label><p>#09-123</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>NO. OF CO-TENANTS</h2></ion-label>
+          <ion-label><p>3</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>CO-TENANTS DETAILS</h2></ion-label>
+          <ion-label><p>CT0123,CT1323,CT1253</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>RENTAL AMOUNT</h2></ion-label>
+          <ion-label><p>$500.00</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>RENTAL DEPOSIT</h2></ion-label>
+          <ion-label><p>$250</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>RENTAL STATUS</h2></ion-label>
+          <ion-label><p>FULLY PAID</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>OTHER CHARGES</h2></ion-label>
+          <ion-label><p>$69.00</p></ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    
+    `;
+    }
+  }
+);
+
+//function to create tenant inventory modal
+async function createAdminTenantModal() {
+  const modal = await modalController.create({
+    component: "admin-tenant-modal",
+    cssClass: "adminTenantModal",
+  });
+
+  await modal.present();
+  currentModal = modal;
+}
+
+
+//----- Modal for view consumables details ------------------------------------
+
+customElements.define(
+  "pay-admin-modal",
+  class ModalContent extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `
+
+      <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Payment Info</ion-title>
+        <ion-buttons slot="end">
+          <ion-button id="closeModal">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+
+        <ion-item>
+          <ion-label><h2>Tenant ID</h2></ion-label>
+          <ion-label><p>TT9876</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>AMOUNT</h2></ion-label>
+          <ion-label><p>$20.00</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>DEDUCTION</h2></ion-label>
+          <ion-label><p>-%5.00</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>CATEGORY</h2></ion-label>
+          <ion-label><p>Rental fee</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>CHARGES</h2></ion-label>
+          <ion-label><p>NIL</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>NOTE</h2></ion-label>
+          <ion-label><p>Late payment</p></ion-label>
+        </ion-item>
+        
+      </ion-list>
+    </ion-content>
+    
+    `;
+    }
+  }
+);
+
+//function to create tenant inventory modal
+async function createPayAdminModal() {
+  const modal = await modalController.create({
+    component: "pay-admin-modal",
+    cssClass: "payAdminModal",
+  });
+
+  await modal.present();
+  currentModal = modal;
+}
+
+//----- End of modal for view consumables details --------------------
+
+//----- Modal for view bill details ------------------------------------
+
+customElements.define(
+  "bill-admin-modal",
+  class ModalContent extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `
+
+      <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Bill Info</ion-title>
+        <ion-buttons slot="end">
+          <ion-button id="closeModal">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+
+        <ion-item>
+          <ion-label><h2>SERIAL</h2></ion-label>
+          <ion-label><p>UB1234</p></ion-label>
+          <ion-label></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>SPLIT</h2></ion-label>
+          <ion-label><p>2</p></ion-label>
+          <ion-label><ion-button class="changeSplit-btn" size="small" color="themetext">Edit
+          </ion-button></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>COMMENTS</h2></ion-label>
+          <ion-label><p>Bill Waivered</p></ion-label>
+          <ion-label></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>DELAY</h2></ion-label>
+          <ion-label><p>-</p></ion-label>
+          <ion-label></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>REMINDER</h2></ion-label>
+          <ion-label><p>-</p></ion-label>
+          <ion-label></ion-label>
+        </ion-item>
+        
+      </ion-list>
+    </ion-content>
+    
+    `;
+    }
+  }
+);
+
+//function to create bill modal
+async function createBillAdminModal() {
+  const modal = await modalController.create({
+    component: "bill-admin-modal",
+    cssClass: "billAdminModal",
+  });
+
+  await modal.present();
+  currentModal = modal;
+}
+
+//----- End of modal for view bill details --------------------
+
+//----- Modal for view consumables details ------------------------------------
+
+customElements.define(
+  "consume-admin-modal",
+  class ModalContent extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `
+
+      <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Consumable Info</ion-title>
+        <ion-buttons slot="end">
+          <ion-button id="closeModal">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+
+        <ion-item>
+          <ion-label><h2>TENANT ID</h2></ion-label>
+          <ion-label><p>TT0001</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>ITEM NAME</h2></ion-label>
+          <ion-label><p>Evian Bottle</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>FEE IMPOSED</h2></ion-label>
+          <ion-label><p>$2.00</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>COMMENTS</h2></ion-label>
+          <ion-label><p>Fee Waivered</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>STATUS</h2></ion-label>
+          <ion-label><p>Available</p></ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    
+    `;
+    }
+  }
+);
+
+//function to create tenant inventory modal
+async function createConsumablesAdminModal() {
+  const modal = await modalController.create({
+    component: "consume-admin-modal",
+    cssClass: "consumeAdminModal",
+  });
+
+  await modal.present();
+  currentModal = modal;
+}
+
+//----- End of modal for view consumables details --------------------
+
+//----- Modal for view admin inventory details ------------------------------------
+customElements.define(
+  "inv-admin-modal",
+  class ModalContent extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `
+
+      <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Inventory Info</ion-title>
+        <ion-buttons slot="end">
+          <ion-button id="closeModal">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item>
+          <ion-label><h2>DONOR</h2></ion-label>
+          <ion-label><p>JACK TYLER DR8341</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>ITEM</h2></ion-label>
+          <ion-label><p>KITCHEN SPOON IT1234</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>LOCATION</h2></ion-label>
+          <ion-label><p>TRANSITION PLUS @ <BR>JALAN BUKIT MERAHH <BR>#04-756</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>HISTORY</h2></ion-label>
+          <ion-label><p>LOANED TO ELON TT9372<br></p><p>LOANED TO NOAH TT9372<br></p><p>LOANED TO KHAI TT9372<br></p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>STATUS</h2></ion-label>
+          <ion-label><p>ISSUED</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>DATE</h2></ion-label>
+          <ion-label><p>WEDNESDAY</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>REPAIR</h2></ion-label>
+          <ion-label><p>PENDING</p></ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    
+    `;
+    }
+  }
+);
+
+//function to create tenant inventory modal
+async function createInvAdminModal() {
+  const modal = await modalController.create({
+    component: "inv-admin-modal",
+    cssClass: "invAdminModal",
+  });
+
+  await modal.present();
+  currentModal = modal;
+}
+
+
 //close modal using button
 $("body").on("click", "#closeModal", function () {
   console.log("Closed modal!");
@@ -1040,3 +1368,4 @@ function dismissExtraModal() {
     });
   }
 }
+
