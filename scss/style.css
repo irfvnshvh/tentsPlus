@@ -175,4 +175,8 @@ body {
   position: absolute;
   display: block;
 }
+
+.logoutLogo {
+  margin-left:-30%;
+}
 /*# sourceMappingURL=style.css.map */
