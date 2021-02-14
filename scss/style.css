@@ -117,39 +117,14 @@ body {
   padding-bottom: 5px;
 }
 
+.infoRow {
+  line-height: 200%;
+}
+
 #menuLogo {
   width: 10vw;
+  margin-left: 10%;
   padding-bottom: 40%;
-  margin-left: 5%;
-}
-
-#receiptLogo {
-  width: 10vw;
-  position:relative;
-  margin-top: 5%;
-}
-
-#receiptHeader {
-  text-align: center;
-  margin: 0 auto;
-  margin-top: -5%;
-}
-
-
-#receiptLeftCol {
-    text-align: left;
-}
-
-
-#receiptRightCol {
-  text-align: right;
-}
-
-#receiptContainer {
-  position: relative; 
-  text-align: center;
-  padding: 2%;
-  margin: 0 auto;
 }
 
 .userName {
@@ -167,6 +142,15 @@ body {
 
 .infoCell {
   text-align: center;
+}
+
+.infoCellFamily {
+  text-align: left;
+  font-size: 14px;
+}
+
+th {
+  text-align: left;
 }
 
 .updatePasswordModal .modal-wrapper {
