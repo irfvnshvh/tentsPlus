@@ -218,6 +218,13 @@ body {
   display: block;
 }
 
+.CWInvModal .modal-wrapper {
+  height: 70%;
+  top: 35%;
+  position: absolute;
+  display: block;
+}
+
 .splitModal .modal-wrapper {
   height: 50%;
   top: 50%;
@@ -226,6 +233,13 @@ body {
 }
 
 .consumeCWModal .modal-wrapper {
+  height: 45%;
+  top: 55%;
+  position: absolute;
+  display: block;
+}
+
+.invCWModal .modal-wrapper {
   height: 45%;
   top: 55%;
   position: absolute;
