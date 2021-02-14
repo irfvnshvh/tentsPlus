@@ -179,4 +179,14 @@ body {
 .logoutLogo {
   margin-left:-30%;
 }
+
+#tenantHistory-btn {
+margin-left: 25%;
+text-align: left;
+margin-bottom: 8%;;
+}
+
+.infoRow {
+  line-height: 200%;
+}
 /*# sourceMappingURL=style.css.map */
