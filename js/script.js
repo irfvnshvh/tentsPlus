@@ -175,6 +175,11 @@ $("body").on("click", "#tenantCons-btn", function () {
   $("ion-app").load("tenantCons.html");
 });
 
+$("body").on("click", "#tenantHistory-btn", function () {
+  console.log("back to tenantHistory page!");
+  $("ion-app").load("tenantHistory.html");
+});
+
 $("body").on("click", "#tenantPayment-btn", function () {
   console.log("back to tenantPayment page!");
   $("ion-app").load("tenantPayment.html");
@@ -1871,23 +1876,23 @@ customElements.define(
         </ion-item>
         <ion-item>
           <ion-label><h2>LOCATION</h2></ion-label>
-          <ion-label><p>TRANSITION PLUS @ <BR>JALAN BUKIT MERAHH <BR>#04-756</p></ion-label>
+          <ion-label><p>TRANSITION PLUS @ <BR>JALAN BUKIT MERAH</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>HISTORY</h2></ion-label>
-          <ion-label><p>LOANED TO ELON TT9372<br></p><p>LOANED TO NOAH TT9372<br></p><p>LOANED TO KHAI TT9372<br></p></ion-label>
+          <ion-label>
+          <ion-label><p>LOANED TO ELON TT9372</p></ion-label>
+          <ion-label><p>LOANED TO NOAH TT9372</p></ion-label>
+          <ion-label><p>LOANED TO KHAI TT9372</p></ion-label>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>REPAIR</h2></ion-label>
+          <ion-label><p>POLISHING | ONCE A MONTH | COMPLETED </p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>STATUS</h2></ion-label>
           <ion-label><p>ISSUED</p></ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label><h2>DATE</h2></ion-label>
-          <ion-label><p>WEDNESDAY</p></ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label><h2>REPAIR</h2></ion-label>
-          <ion-label><p>PENDING</p></ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
