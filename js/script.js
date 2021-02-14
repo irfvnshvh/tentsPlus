@@ -162,6 +162,11 @@ $("body").on("click", "#tenantCons-btn", function () {
   $("ion-app").load("tenantCons.html");
 });
 
+$("body").on("click", "#tenantHistory-btn", function () {
+  console.log("back to tenantHistory page!");
+  $("ion-app").load("tenantHistory.html");
+});
+
 $("body").on("click", "#tenantPayment-btn", function () {
   console.log("back to tenantPayment page!");
   $("ion-app").load("tenantPayment.html");
@@ -1056,7 +1061,7 @@ customElements.define(
         <ion-item>
           <ion-label><h2>RENTAL STATUS</h2></ion-label>
           <ion-label><p>FULLY PAID</p></ion-label>
-        </ion-item>
+        </ion-item>C
         <ion-item>
           <ion-label><h2>OTHER CHARGES</h2></ion-label>
           <ion-label><p>$69.00</p></ion-label>
