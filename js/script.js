@@ -618,13 +618,10 @@ function loadAdminTenantModule() {
 
     // for loop to add in table row bassed on data length
     for (var i = 0; i < dataArray.length; i++) {
-      var tenantID = localStorage.setItem("tenantID", dataArray[i].tenant_id);
-      var tenantCo = localStorage.setItem("tenantCo", dataArray[i].cotenant_num);
-      var tenantUnit = localStorage.setItem( "tenantUnit",dataArray[i].unit_num);
 
-      var id = localStorage.getItem("tenantID");
-      var co = localStorage.getItem("tenantCo");
-      var unit = localStorage.getItem("tenantUnit");
+      var id = dataArray[i].tenant_id;
+      var co = dataArray[i].cotenant_num;
+      var unit = dataArray[i].unit_num;
 
       //console.log(id + " " + co + " " + unit);
 
@@ -693,7 +690,7 @@ function loadAdminDonor(){
       var donorID =  dataArray[i].donor_id;
       var donorName = dataArray[i].donor_name;
       var donorItemID = dataArray[i].item_id;
-      var donorItemLocation = dataArray[i].item_location;
+      var donorItemLocation = dataArray[i].unit_id;
 
       var tr = document.createElement("tr");
       tr.setAttribute("class", "infoRow");
@@ -899,8 +896,8 @@ function loadAdminPayment(){
       ionButton.setAttribute("color", "themetext");
 
       var textID = document.createTextNode(paymentID);
-      var textName = document.createTextNode(amount);
-      var textItemID = document.createTextNode(deposit);
+      var textName = document.createTextNode("$"+amount);
+      var textItemID = document.createTextNode("$"+deposit);
       var buttonText = document.createTextNode("More");
 
       tr.appendChild(tdID);
