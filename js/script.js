@@ -14,6 +14,8 @@ $(document).ready(function () {
 
   var storedButtonID;
 
+  var cwTenantID;
+
   //Variable to store API data
   var dataArray;
 
@@ -83,12 +85,16 @@ $("body").on("click", "#dummy2-btn", function () {
 
 $("body").on("click", "#dummy3-btn", function () {
   console.log("going to eReceipt!");
-  $("ion-app").load("eReceipt.html");
+  $("ion-app").load("eReceipt.html", function(){
+    loadReceipt();
+  });
 });
 
-$("body").on("click", "#receipt-btn", function () {
+$("body").on("click", ".receipt-btn", function () {
   //console.log("going to eReceipt!");
-  $("ion-app").load("eReceipt.html");
+  $("ion-app").load("eReceipt.html", function(){
+    loadReceipt();
+  });
 });
 
 $("body").on("click", "#dummy4-btn", function () {
@@ -131,7 +137,9 @@ $("body").on("click", ".success", function () {
 // redirect to bills page after confirm successSplitChange function
 $("body").on("click", ".successSplit", function () {
   console.log("success split button clicked");
-  $("ion-app").load("tenantUtility.html");
+  $("ion-app").load("tenantUtility.html", function(){
+    loadCaseworkerUtility();
+  });
 });
 
 //DONOR NAVIGATION LOAD JS SCRIPTS
@@ -152,7 +160,9 @@ $("body").on("click", "#donorProf-btn", function () {
 //TENANT CASE WORKER NAVIGATION LOAD JS SCRIPTS
 $("body").on("click", "#tenantInv-btn", function () {
   console.log("back to tenantModule page!");
-  $("ion-app").load("tenantInv.html");
+  $("ion-app").load("tenantInv.html", function(){
+    loadCaseworkerInventory();
+  });
 });
 
 $("body").on("click", "#tenantFamily-btn", function () {
@@ -172,37 +182,50 @@ $("body").on("click", "#tenantProf-btn", function () {
 
 $("body").on("click", "#tenantCons-btn", function () {
   console.log("back to tenantCons page!");
-  $("ion-app").load("tenantCons.html");
+  $("ion-app").load("tenantCons.html", function(){
+    loadCaseworkerConsumable();
+  });
 });
 
 $("body").on("click", "#tenantHistory-btn", function () {
   console.log("back to tenantHistory page!");
-  $("ion-app").load("tenantHistory.html");
+  $("ion-app").load("tenantHistory.html", function(){
+    loadTenantHistory();
+  });
 });
 
 $("body").on("click", "#tenantPayment-btn", function () {
   console.log("back to tenantPayment page!");
-  $("ion-app").load("tenantPayment.html");
+  $("ion-app").load("tenantPayment.html", function(){
+    loadCaseworkerPayment();
+    getButtonID(this.id);
+  });
 });
 
 $("body").on("click", "#tenantUtility-btn", function () {
   console.log("back to tenantUtility page!");
-  $("ion-app").load("tenantUtility.html");
+  $("ion-app").load("tenantUtility.html", function(){
+    loadCaseworkerUtility();
+  });
 });
 
 $("body").on("click", ".tenantInvModal-btn", function () {
   console.log("Created tenant inventory modal!");
   createCWInvModal();
+  getButtonID(this.id);
+  
 });
 
 $("body").on("click", ".consumeModal-btn", function () {
   console.log("Created consumable modal!");
   createConsumablesCWModal();
+  getButtonID(this.id);
 });
 
 $("body").on("click", ".billModal-btn", function () {
   console.log("Created bill modal!");
   createBillCWModal();
+  getButtonID(this.id);
 });
 
 $("body").on("click", ".changeSplit-btn", function () {
@@ -213,6 +236,7 @@ $("body").on("click", ".changeSplit-btn", function () {
 $("body").on("click", ".paymentCWModal-btn", function () {
   console.log("Created payment modal!");
   createPayCWModal();
+  getButtonID(this.id);
 });
 
 $("body").on("click", "#change-pw", function () {
@@ -240,7 +264,9 @@ $("body").on("click", "#adminModule-btn", function () {
 
 $("body").on("click", "#adminInv-btn", function () {
   console.log("back to adminModule page!");
-  $("ion-app").load("adminInv.html");
+  $("ion-app").load("adminInv.html", function(){
+    loadAdminInventory();
+  });
 });
 
 $("body").on("click", "#adminFamily-btn", function () {
@@ -305,6 +331,7 @@ $("body").on("click", ".pay-admin-modal-btn", function () {
 $("body").on("click", ".inv-admin-modal-btn", function () {
   console.log("Created payment modal!");
   createInvAdminModal();
+  getButtonID(this.id);
 });
 
 //------------------ Start of stay logged in function ----------------------------
@@ -433,6 +460,7 @@ function login() {
             // store login info into localstorage here ---------------------------
             userID = dataArray[i].foreign_id;
             storedAccType = dataArray[i].acc_type;
+            //storeTenant = dataArray[i].tenant_id;
 
             localStorage.setItem("storedID", userID);
             localStorage.setItem("storedUsername", enteredUser);
@@ -773,7 +801,7 @@ function loadAdminUtility(){
   
   $.ajax(settings).done(function (response) {
     dataArray = JSON.parse(response);
-    console.log(response);
+    console.log(dataArray);
 
     var table = document.getElementById("adminUtilityTable");
 
@@ -842,7 +870,7 @@ function loadAdminPayment(){
   
   $.ajax(settings).done(function (response) {
     dataArray = JSON.parse(response);
-    console.log(response);
+    console.log(dataArray);
 
     var table = document.getElementById("adminPaymentTable");
 
@@ -894,7 +922,64 @@ function loadAdminPayment(){
 }
 
 function loadAdminInventory(){
+  var settings = {
+    "url": "http://localhost:8080/api/admin/inventory",
+    "method": "GET",
+    "timeout": 0,
+  };
+  
+  $.ajax(settings).done(function (response) {
+    dataArray = JSON.parse(response);
+    console.log(dataArray);
 
+    var table = document.getElementById("adminInvTable");
+
+    for (var i = 0; i < dataArray.length; i++){
+      var itemID =  dataArray[i].item_id;
+      var donor = dataArray[i].donor_name;
+      var item = dataArray[i].item_name;
+
+      var tr = document.createElement("tr");
+      tr.setAttribute("class", "infoRow");
+
+      var tdButton = document.createElement("td");
+      tdButton.setAttribute("class", "infoButton");
+
+      var tdID = document.createElement("td");
+      tdID.setAttribute("class", "infoCell");
+      var tdName = document.createElement("td");
+      tdName.setAttribute("class", "infoCell");
+      var tdComment = document.createElement("td");
+      tdComment.setAttribute("class", "infoCell");
+      var ionButton = document.createElement("ion-button");
+      ionButton.setAttribute("class", "inv-admin-modal-btn");
+      ionButton.setAttribute("id", `${dataArray[i].item_id}`);
+      ionButton.setAttribute("size", "small");
+      ionButton.setAttribute("expand", "block");
+      ionButton.setAttribute("color", "themetext");
+
+      var textID = document.createTextNode(itemID);
+      var textName = document.createTextNode(donor);
+      var textItemID = document.createTextNode(item);
+      var buttonText = document.createTextNode("More");
+
+      tr.appendChild(tdID);
+      tdID.appendChild(textID);
+
+      tr.appendChild(tdName);
+      tdName.appendChild(textName);
+
+      tr.appendChild(tdComment);
+      tdComment.appendChild(textItemID);
+
+      tr.appendChild(tdButton);
+      tdButton.appendChild(ionButton);
+      ionButton.appendChild(buttonText);
+
+      table.appendChild(tr);
+    }
+
+  });
 }
 
 
@@ -903,7 +988,86 @@ function loadAdminInventory(){
 // -------------------------- CASE WORKER PAGE ------------------------------------------
 
 function loadTenantFamilyInfo(){
+  var settings = {
+    "url": `http://localhost:8080/api/caseworker/family/${userID}`,
+    "method": "GET",
+    "timeout": 0,
+  };
   
+  $.ajax(settings).done(function (response) {
+    dataArray = JSON.parse(response);
+    //console.log(dataArray);
+
+    cwTenantID = dataArray[0].tenant_id;
+    //console.log(cwTenantID);
+    document.getElementById("cwUnitNum").innerHTML = dataArray[0].unit_num;
+    document.getElementById("cwTenantID").innerHTML = dataArray[0].tenant_id;
+    loadFamilyCotenantInfo();
+  });
+
+}
+
+function loadFamilyCotenantInfo(){
+  var settings2 = {
+    "url": `http://localhost:8080/api/caseworker/family/cotenants/${cwTenantID}`,
+    "method": "GET",
+    "timeout": 0,
+  };
+  
+  $.ajax(settings2).done(function (response) {
+    dataArray2 = JSON.parse(response);
+    //console.log(dataArray2);
+
+    for (var i = 0; i < dataArray2.length; i++){
+      var cotName =  dataArray2[i].cot_name;
+      var cotID = dataArray2[i].cot_id;
+      var cotPhone = dataArray2[i].cot_phone;
+      var cotCitizen = dataArray2[i].cot_citizenship;
+
+      var ionLabelNameTitle = "<ion-label>Name</ion-label>";
+      var ionLabelName = `<ion-label>${cotName}</ion-label>`;
+
+      var ionLabelIDTitle = "<ion-label>Co-Tenant ID</ion-label>";
+      var ionLabelID = `<ion-label>${cotID}</ion-label>`;
+
+      var ionLabelPhoneTitle = "<ion-label>Phone Number</ion-label>";
+      var ionLabelPhone = `<ion-label>${cotPhone}</ion-label>`;
+
+      var ionLabelCitizenTitle = "<ion-label>Citizenship</ion-label>";
+      var ionLabelCiti = `<ion-label>${cotCitizen}</ion-label>`;
+
+      $("#cwCotenantInfoList").append(`<ion-item>${ionLabelNameTitle} ${ionLabelName}</ion-item>`);
+      $("#cwCotenantInfoList").append(`<ion-item>${ionLabelIDTitle} ${ionLabelID}</ion-item>`);
+      $("#cwCotenantInfoList").append(`<ion-item>${ionLabelPhoneTitle} ${ionLabelPhone}</ion-item>`);
+      $("#cwCotenantInfoList").append(`<ion-item>${ionLabelCitizenTitle} ${ionLabelCiti}</ion-item>`);
+
+      $("#cwCotenantInfoList").append(`<ion-item-divider><ion-label><br></ion-label></ion-item-divider>`);
+
+      //console.log("run");
+
+    }
+
+
+  });
+}
+
+function loadTenantHistory(){
+  var settings = {
+    "url": `http://localhost:8080/api/caseworker/family/history/${cwTenantID}`,
+    "method": "GET",
+    "timeout": 0,
+  };
+  
+  $.ajax(settings).done(function (response) {
+    dataArray2 = JSON.parse(response);
+    console.log(dataArray2);
+
+    document.getElementById("cwHistID").innerHTML = dataArray2[0].tenant_hist_id;
+    document.getElementById("cwHistDate").innerHTML = dataArray2[0].tenant_hist_update;
+    document.getElementById("cwHistUnitID").innerHTML = dataArray2[0].unit_id;
+    document.getElementById("cwHistNum").innerHTML = dataArray2[0].cotenant_num;
+
+  });
 }
 
 function loadCaseworkerProfile(){
@@ -922,6 +1086,266 @@ function loadCaseworkerProfile(){
     document.getElementById("cwID").innerHTML = dataArray[0].case_id;
   });
 }
+
+function loadCaseworkerUtility(){
+  var settings = {
+    "url": `http://localhost:8080/api/caseworker/utility/${userID}`,
+    "method": "GET",
+    "timeout": 0,
+  };
+  
+  $.ajax(settings).done(function (response) {
+    dataArray = JSON.parse(response);
+    //console.log(dataArray);
+
+    var table = document.getElementById("cwUtilityModal");
+
+    for (var i = 0; i < dataArray.length; i++){
+      var billID =  dataArray[i].utility_id;
+      var splitAmt = dataArray[i].tenant_num;
+
+      var tr = document.createElement("tr");
+      tr.setAttribute("class", "infoRow");
+
+      var tdButton = document.createElement("td");
+      tdButton.setAttribute("class", "infoButton");
+
+      var tdID = document.createElement("td");
+      tdID.setAttribute("class", "infoCell");
+      var tdName = document.createElement("td");
+      tdName.setAttribute("class", "infoCell");
+      var ionButton = document.createElement("ion-button");
+      ionButton.setAttribute("class", "billModal-btn");
+      ionButton.setAttribute("id", `${dataArray[i].utility_id}`);
+      ionButton.setAttribute("size", "small");
+      ionButton.setAttribute("expand", "block");
+      ionButton.setAttribute("color", "themetext");
+
+      var textID = document.createTextNode(billID);
+      var textName = document.createTextNode(splitAmt);
+      var buttonText = document.createTextNode("More");
+
+      tr.appendChild(tdID);
+      tdID.appendChild(textID);
+
+      tr.appendChild(tdName);
+      tdName.appendChild(textName);
+
+      tr.appendChild(tdButton);
+      tdButton.appendChild(ionButton);
+      ionButton.appendChild(buttonText);
+
+      table.appendChild(tr);
+    }
+
+  });
+}
+
+function loadCaseworkerPayment(){
+  var settings = {
+    "url": `http://localhost:8080/api/caseworker/payment/${cwTenantID}`,
+    "method": "GET",
+    "timeout": 0,
+  };
+  
+  $.ajax(settings).done(function (response) {
+    dataArray = JSON.parse(response);
+    console.log(dataArray);
+
+    var table = document.getElementById("cwPaymentTable");
+
+    for (var i = 0; i < dataArray.length; i++){
+      var paymentID =  dataArray[i].payment_id;
+      var amountOwe = dataArray[i].amount_owe;
+      var deduction = dataArray[i].deposit_deduction;
+
+      var tr = document.createElement("tr");
+      tr.setAttribute("class", "infoRow");
+
+      var tdButton = document.createElement("td");
+      tdButton.setAttribute("class", "infoButton");
+
+      var tdID = document.createElement("td");
+      tdID.setAttribute("class", "infoCell");
+      var tdName = document.createElement("td");
+      tdName.setAttribute("class", "infoCell");
+      var tdDeduct = document.createElement("td");
+      tdDeduct.setAttribute("class", "infoCell");
+
+
+      var ionButton = document.createElement("ion-button");
+      ionButton.setAttribute("class", "paymentCWModal-btn");
+      ionButton.setAttribute("id", `${dataArray[i].payment_id}`);
+      ionButton.setAttribute("size", "small");
+      ionButton.setAttribute("expand", "block");
+      ionButton.setAttribute("color", "themetext");
+
+      var textID = document.createTextNode(paymentID);
+      var textName = document.createTextNode("$" + amountOwe);
+      var textDeduct = document.createTextNode("$" + deduction);
+      var buttonText = document.createTextNode("More");
+
+      tr.appendChild(tdID);
+      tdID.appendChild(textID);
+
+      tr.appendChild(tdName);
+      tdName.appendChild(textName);
+
+      tr.appendChild(tdDeduct);
+      tdDeduct.appendChild(textDeduct);
+
+      tr.appendChild(tdButton);
+      tdButton.appendChild(ionButton);
+      ionButton.appendChild(buttonText);
+
+      table.appendChild(tr);
+    }
+
+  });
+}
+
+function loadCaseworkerConsumable(){
+  var settings = {
+    "url": `http://localhost:8080/api/caseworker/consumables/${cwTenantID}`,
+    "method": "GET",
+    "timeout": 0,
+  };
+  
+  $.ajax(settings).done(function (response) {
+    dataArray = JSON.parse(response);
+    console.log(dataArray);
+
+    var table = document.getElementById("cwConsumablesTable");
+
+    for (var i = 0; i < dataArray.length; i++){
+      var paymentID =  dataArray[i].cons_name;
+      var amountOwe = dataArray[i].cons_label;
+
+      var tr = document.createElement("tr");
+      tr.setAttribute("class", "infoRow");
+
+      var tdButton = document.createElement("td");
+      tdButton.setAttribute("class", "infoButton");
+
+      var tdID = document.createElement("td");
+      tdID.setAttribute("class", "infoCell");
+      var tdName = document.createElement("td");
+      tdName.setAttribute("class", "infoCell");
+
+
+      var ionButton = document.createElement("ion-button");
+      ionButton.setAttribute("class", "consumeModal-btn");
+      ionButton.setAttribute("id", `${dataArray[i].cons_id}`);
+      ionButton.setAttribute("size", "small");
+      ionButton.setAttribute("expand", "block");
+      ionButton.setAttribute("color", "themetext");
+
+      var textID = document.createTextNode(paymentID);
+      var textName = document.createTextNode(amountOwe);
+      var buttonText = document.createTextNode("More");
+
+      tr.appendChild(tdID);
+      tdID.appendChild(textID);
+
+      tr.appendChild(tdName);
+      tdName.appendChild(textName);
+
+      tr.appendChild(tdButton);
+      tdButton.appendChild(ionButton);
+      ionButton.appendChild(buttonText);
+
+      table.appendChild(tr);
+    }
+    
+
+  });
+}
+
+function loadCaseworkerInventory(){
+  var settings = {
+    "url": `http://localhost:8080/api/caseworker/inventory/${cwTenantID}`,
+    "method": "GET",
+    "timeout": 0,
+  };
+  
+  $.ajax(settings).done(function (response) {
+    dataArray = JSON.parse(response);
+    console.log(dataArray);
+
+    var table = document.getElementById("cwInventoryTable");
+
+    for (var i = 0; i < dataArray.length; i++){
+      var serialID =  dataArray[i].item_id;
+      var donor = dataArray[i].donor_name;
+      var item = dataArray[i].item_name;
+
+      var tr = document.createElement("tr");
+      tr.setAttribute("class", "infoRow");
+
+      var tdButton = document.createElement("td");
+      tdButton.setAttribute("class", "infoButton");
+
+      var tdID = document.createElement("td");
+      tdID.setAttribute("class", "infoCell");
+      var tdName = document.createElement("td");
+      tdName.setAttribute("class", "infoCell");
+      var tdDeduct = document.createElement("td");
+      tdDeduct.setAttribute("class", "infoCell");
+
+
+      var ionButton = document.createElement("ion-button");
+      ionButton.setAttribute("class", "tenantInvModal-btn");
+      ionButton.setAttribute("id", `${dataArray[i].item_id}`);
+      ionButton.setAttribute("size", "small");
+      ionButton.setAttribute("expand", "block");
+      ionButton.setAttribute("color", "themetext");
+
+      var textID = document.createTextNode(serialID);
+      var textName = document.createTextNode(donor);
+      var textDeduct = document.createTextNode(item);
+      var buttonText = document.createTextNode("More");
+
+      tr.appendChild(tdID);
+      tdID.appendChild(textID);
+
+      tr.appendChild(tdName);
+      tdName.appendChild(textName);
+
+      tr.appendChild(tdDeduct);
+      tdDeduct.appendChild(textDeduct);
+
+      tr.appendChild(tdButton);
+      tdButton.appendChild(ionButton);
+      ionButton.appendChild(buttonText);
+
+      table.appendChild(tr);
+    }
+  });
+}
+
+function loadReceipt(){
+  var settings = {
+    "url": `http://localhost:8080/api/caseworker/receipt/${storedButtonID}`,
+    "method": "GET",
+    "timeout": 0,
+  };
+  
+  $.ajax(settings).done(function (response) {
+    dataArray = JSON.parse(response);
+    console.log(dataArray);
+    var total;
+    document.getElementById("receiptTenantID").innerHTML = dataArray[0].tenant_id;
+    document.getElementById("receiptAmtOwe").innerHTML = "$" + dataArray[0].amount_owe;
+    document.getElementById("receiptRentalDeposit").innerHTML = "$" + dataArray[0].rental_deposit;
+    document.getElementById("receiptDepositDeduct").innerHTML = "$" + dataArray[0].deposit_deduction;
+    document.getElementById("receiptNegliCharge").innerHTML = "$" + dataArray[0].negligence_charge;
+
+    total = ((dataArray[0].amount_owe - dataArray[0].deposit_deduction) - dataArray[0].negligence_charge);
+    document.getElementById("receiptTotal").innerHTML = "$" + total;
+  });
+}
+
+
 
 // ----------------------- End of case worker page --------------------------------------
 
@@ -1080,31 +1504,43 @@ customElements.define(
       <ion-list>
         <ion-item>
           <ion-label><h2>DONOR</h2></ion-label>
-          <ion-label><p>JACK TYLER DR8341</p></ion-label>
+          <ion-label><p id="cwInvDonorName">JACK TYLER | DR8341</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>ITEM</h2></ion-label>
-          <ion-label><p>KITCHEN SPOON IT1234</p></ion-label>
+          <ion-label><p id="cwInvItemName">KITCHEN SPOON | IT1234</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>LOCATION</h2></ion-label>
-          <ion-label><p>TRANSITION PLUS @ <BR>JALAN BUKIT MERAHH <BR>#04-756</p></ion-label>
+          <ion-label><p id="cwInvItemLocation"></p></ion-label>
         </ion-item>
         <ion-item>
-          <ion-label><h2>HISTORY</h2></ion-label>
-          <ion-label><p>LOANED TO ELON TT9372<br></p><p>LOANED TO NOAH TT9372<br></p><p>LOANED TO KHAI TT9372<br></p></ion-label>
+          <ion-label><h2>REPAIR FREQUENCY</h2></ion-label>
+          <ion-label><p id="cwInvRepairFre"></p></ion-label>
         </ion-item>
         <ion-item>
-          <ion-label><h2>STATUS</h2></ion-label>
-          <ion-label><p>ISSUED</p></ion-label>
+          <ion-label><h2>REPAIR STATUS</h2></ion-label>
+          <ion-label><p id="cwInvRepairSta"></p></ion-label>
         </ion-item>
         <ion-item>
-          <ion-label><h2>DATE</h2></ion-label>
-          <ion-label><p>WEDNESDAY</p></ion-label>
+          <ion-label><h2>REPAIR TYPE</h2></ion-label>
+          <ion-label><p id="cwInvRepairType"></p></ion-label>
         </ion-item>
         <ion-item>
-          <ion-label><h2>REPAIR</h2></ion-label>
-          <ion-label><p>PENDING</p></ion-label>
+          <ion-label><h2>CURRENT STATUS</h2></ion-label>
+          <ion-label><p id="cwInvItemStatus">ISSUED</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>STATUS HISTORY</h2></ion-label>
+          <ion-label><p id="cwInvStaHist"></p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>LOCATION HISTORY</h2></ion-label>
+          <ion-label><p id="cwInvLocHist"></p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>LAST UPDATE HISTORY</h2></ion-label>
+          <ion-label><p id="cwInvDateHist"></p></ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
@@ -1119,6 +1555,33 @@ async function createCWInvModal() {
   const modal = await modalController.create({
     component: "inv-cw-modal",
     cssClass: "CWInvModal",
+  });
+
+  var settings = {
+    "url": `http://localhost:8080/api/caseworker/inventory/detail/${storedButtonID}`,
+    "method": "GET",
+    "timeout": 0,
+  };
+  
+  $.ajax(settings).done(function (response) {
+    var dataArray2 = JSON.parse(response);
+    console.log(dataArray2);
+
+    document.getElementById("cwInvDonorName").innerHTML = dataArray2[0].donor_name + " | " + dataArray2[0].donor_id;
+    document.getElementById("cwInvItemName").innerHTML = dataArray2[0].item_name + " | " + dataArray2[0].item_id;
+    document.getElementById("cwInvItemLocation").innerHTML = dataArray2[0].item_location;
+    document.getElementById("cwInvRepairFre").innerHTML = dataArray2[0].repair_frequency;
+    document.getElementById("cwInvRepairSta").innerHTML = dataArray2[0].repair_status;
+    document.getElementById("cwInvRepairType").innerHTML = dataArray2[0].repair_type;
+    document.getElementById("cwInvItemStatus").innerHTML = dataArray2[0].item_status;
+
+    for (var i = 0; i < dataArray2.length; i++){
+      document.getElementById("cwInvStaHist").append(dataArray2[i].item_status+", ");
+      document.getElementById("cwInvLocHist").append(dataArray2[i].item_location+", ");
+      document.getElementById("cwInvDateHist").append(dataArray2[i].item_date+", ");
+     
+    }
+
   });
 
   await modal.present();
@@ -1212,23 +1675,23 @@ customElements.define(
 
         <ion-item>
           <ion-label><h2>ITEM NAME</h2></ion-label>
-          <ion-label><p>Evian Bottle</p></ion-label>
+          <ion-label><p id="cwConsName">Evian Bottle</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>ITEM ID</h2></ion-label>
-          <ion-label><p>#2346</p></ion-label>
+          <ion-label><p id="cwConsID">#2346</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>LABEL</h2></ion-label>
-          <ion-label><p>Waiver</p></ion-label>
+          <ion-label><p id="cwConsLabel">Waiver</p></ion-label>
         </ion-item>
         <ion-item>
-          <ion-label><h2>FEE</h2></ion-label>
-          <ion-label><p>$2.40</p></ion-label>
+          <ion-label><h2>STATUS</h2></ion-label>
+          <ion-label><p id="cwConsStatus">$2.40</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>COMMENTS</h2></ion-label>
-          <ion-label><p>On the house</p></ion-label>
+          <ion-label><p id="cwConsComments">On the house</p></ion-label>
         </ion-item>
         
       </ion-list>
@@ -1244,6 +1707,32 @@ async function createConsumablesCWModal() {
   const modal = await modalController.create({
     component: "consume-cw-modal",
     cssClass: "consumeCWModal",
+  });
+
+  var settings = {
+    "url": `http://localhost:8080/api/caseworker/consumables/detail/${storedButtonID}`,
+    "method": "GET",
+    "timeout": 0,
+  };
+  
+  $.ajax(settings).done(function (response) {
+    var dataArray2 = JSON.parse(response);
+    console.log(dataArray2);
+
+    var comments;
+
+    if(dataArray2[0].cons_comment = "undefined"){
+      comments = " - ";
+    }else{
+      comments = dataArray2[0].cons_comment;
+    }
+
+    document.getElementById("cwConsName").innerHTML = dataArray2[0].cons_name;
+    document.getElementById("cwConsID").innerHTML = dataArray2[0].cons_id;
+    document.getElementById("cwConsLabel").innerHTML = dataArray2[0].cons_label;
+    document.getElementById("cwConsStatus").innerHTML = dataArray2[0].cons_status;
+    document.getElementById("cwConsComments").innerHTML = comments;
+    
   });
 
   await modal.present();
@@ -1274,33 +1763,33 @@ customElements.define(
 
         <ion-item>
           <ion-label><h2>BILL ID</h2></ion-label>
-          <ion-label><p>0157</p></ion-label>
+          <ion-label><p id="cwBillID">0157</p></ion-label>
           <ion-label></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>SPLIT</h2></ion-label>
-          <ion-label><p>2</p></ion-label>
+          <ion-label><p id="cwSplitAmt">2</p></ion-label>
           <ion-label><ion-button class="changeSplit-btn" size="small" color="themetext">Edit
           </ion-button></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>BILL WAIVER</h2></ion-label>
-          <ion-label><p>Yes</p></ion-label>
+          <ion-label><p id="cwBillWaive">Yes</p></ion-label>
           <ion-label></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>DELAY</h2></ion-label>
-          <ion-label><p>-</p></ion-label>
+          <ion-label><p id="cwBillDelay">-</p></ion-label>
           <ion-label></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>REMINDER</h2></ion-label>
-          <ion-label><p>-</p></ion-label>
+          <ion-label><p id="cwBillReminder">-</p></ion-label>
           <ion-label></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>COMMENTS</h2></ion-label>
-          <ion-label><p>Bill waivered</p></ion-label>
+          <ion-label><p id="cwBillComment">Bill waivered</p></ion-label>
           <ion-label></ion-label>
         </ion-item>
         
@@ -1317,6 +1806,51 @@ async function createBillCWModal() {
   const modal = await modalController.create({
     component: "bill-cw-modal",
     cssClass: "billCWModal",
+  });
+  
+  var settings = {
+    "url": `http://localhost:8080/api/caseworker/utility/${userID}/${storedButtonID}`,
+    "method": "GET",
+    "timeout": 0,
+  };
+  
+  $.ajax(settings).done(function (response) {
+    dataArray = JSON.parse(response);
+    console.log(dataArray);
+
+    var billComment;
+    var paymentReminder;
+    var paymentDelay;
+
+    if(dataArray[0].comment_bill = "undefined"){
+      billComment = " - ";
+    }
+    else{
+      billComment = dataArray[0].comment_bill;
+    }
+
+    if(dataArray[0].payment_delay = "undefined"){
+      paymentDelay = " - ";
+    }
+    else{
+      paymentDelay = dataArray[0].payment_delay;
+    }
+
+    if(dataArray[0].payment_reminder = "undefined"){
+      paymentReminder = " - ";
+    }
+    else{
+      paymentReminder = dataArray[0].payment_reminder;
+    }
+    
+    document.getElementById("cwBillID").innerHTML = dataArray[0].utility_id;
+    document.getElementById("cwSplitAmt").innerHTML = dataArray[0].tenant_num;
+    document.getElementById("cwBillWaive").innerHTML = dataArray[0].waive_bill;
+    document.getElementById("cwBillDelay").innerHTML = paymentDelay;
+    document.getElementById("cwBillReminder").innerHTML = paymentReminder;
+    document.getElementById("cwBillComment").innerHTML = billComment;
+
+
   });
 
   await modal.present();
@@ -1402,31 +1936,31 @@ customElements.define(
 
         <ion-item>
           <ion-label><h2>PAYMENT ID</h2></ion-label>
-          <ion-label><p>9785</p></ion-label>
+          <ion-label><p id="cwPaymentID">9785</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>AMOUNT</h2></ion-label>
-          <ion-label><p>$20.00</p></ion-label>
+          <ion-label><p id="cwPaymentAmt">$20.00</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>DEDUCTION</h2></ion-label>
-          <ion-label><p>-%5.00</p></ion-label>
+          <ion-label><p id="cwPaymentDeduct">-%5.00</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>CATEGORY</h2></ion-label>
-          <ion-label><p>Rental fee</p></ion-label>
+          <ion-label><p id="cwPaymentCat">Rental fee</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>CHARGES</h2></ion-label>
-          <ion-label><p>-</p></ion-label>
+          <ion-label><p id="cwPaymentCharge">-</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>COMMENTS</h2></ion-label>
-          <ion-label><p>Late payment</p></ion-label>
+          <ion-label><p id="cwPaymentComment">Late payment</p></ion-label>
         </ion-item>
 
         <ion-item>
-          <ion-label><ion-button id="receipt-btn" expand="block" color="themetext">Receipt</ion-button></ion-label>
+          <ion-label><ion-button class="receipt-btn" id="${storedButtonID}" expand="block" color="themetext">Receipt</ion-button></ion-label>
         </ion-item>
         
       </ion-list>
@@ -1442,6 +1976,33 @@ async function createPayCWModal() {
   const modal = await modalController.create({
     component: "pay-cw-modal",
     cssClass: "payCWModal",
+  });
+
+  var settings = {
+    "url": `http://localhost:8080/api/caseworker/family/payment/detail/${storedButtonID}`,
+    "method": "GET",
+    "timeout": 0,
+  };
+  
+  $.ajax(settings).done(function (response) {
+    var dataArray = JSON.parse(response);
+    console.log(dataArray);
+
+
+    var paymentComment;
+
+    if(dataArray[0].payment_note = "undefined"){
+      paymentComment = " - ";
+    }else{
+      paymentComment = dataArray[0].payment_note;
+    }
+
+    document.getElementById("cwPaymentID").innerHTML = dataArray[0].payment_id;
+    document.getElementById("cwPaymentAmt").innerHTML = "$" + dataArray[0].amount_owe;
+    document.getElementById("cwPaymentDeduct").innerHTML = "$" + dataArray[0].deposit_deduction;
+    document.getElementById("cwPaymentCat").innerHTML = dataArray[0].payment_cat;
+    document.getElementById("cwPaymentCharge").innerHTML = "$" + dataArray[0].negligence_charge;
+    document.getElementById("cwPaymentComment").innerHTML = paymentComment;
   });
 
   await modal.present();
@@ -1867,32 +2428,44 @@ customElements.define(
     <ion-content>
       <ion-list>
         <ion-item>
-          <ion-label><h2>DONOR</h2></ion-label>
-          <ion-label><p>JACK TYLER DR8341</p></ion-label>
+          <ion-label><h2>DONOR NAME</h2></ion-label>
+          <ion-label><p id="adminInvDonorName">JACK TYLER | ID</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>ITEM</h2></ion-label>
-          <ion-label><p>KITCHEN SPOON IT1234</p></ion-label>
+          <ion-label><p id="adminInvItemName">KITCHEN SPOON | IT1234</p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>LOCATION</h2></ion-label>
-          <ion-label><p>TRANSITION PLUS @ <BR>JALAN BUKIT MERAH</p></ion-label>
+          <ion-label><p id="adminInvLocation">TRANSITION PLUS @ <BR>JALAN BUKIT MERAH</p></ion-label>
         </ion-item>
         <ion-item>
-          <ion-label><h2>HISTORY</h2></ion-label>
-          <ion-label>
-          <ion-label><p>LOANED TO ELON TT9372</p></ion-label>
-          <ion-label><p>LOANED TO NOAH TT9372</p></ion-label>
-          <ion-label><p>LOANED TO KHAI TT9372</p></ion-label>
-          </ion-label>
+          <ion-label><h2>REPAIR FREQUENCY</h2></ion-label>
+          <ion-label><p id="adminInvRepairFre">POLISHING | ONCE A MONTH | COMPLETED </p></ion-label>
         </ion-item>
         <ion-item>
-          <ion-label><h2>REPAIR</h2></ion-label>
-          <ion-label><p>POLISHING | ONCE A MONTH | COMPLETED </p></ion-label>
+          <ion-label><h2>REPAIR STATUS</h2></ion-label>
+          <ion-label><p id="adminInvRepairSta">POLISHING | ONCE A MONTH | COMPLETED </p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>REPAIR TYPE</h2></ion-label>
+          <ion-label><p id="adminInvRepairType">POLISHING | ONCE A MONTH | COMPLETED </p></ion-label>
         </ion-item>
         <ion-item>
           <ion-label><h2>STATUS</h2></ion-label>
-          <ion-label><p>ISSUED</p></ion-label>
+          <ion-label><p id="adminInvStatus">ISSUED</p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>STATUS HISTORY</h2></ion-label>
+          <ion-label><p id="adminInvStaHist"></p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>LOCATION HISTORY</h2></ion-label>
+          <ion-label><p id="adminInvLocHist"></p></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2>LAST UPDATE HISTORY</h2></ion-label>
+          <ion-label><p id="adminInvDateHist"></p></ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
@@ -1909,6 +2482,34 @@ async function createInvAdminModal() {
     cssClass: "invAdminModal",
   });
 
+  var settings = {
+    "url": `http://localhost:8080/api/admin/inventory/detail/${storedButtonID}`,
+    "method": "GET",
+    "timeout": 0,
+  };
+  
+  $.ajax(settings).done(function (response) {
+    var dataArray2 = JSON.parse(response);
+    console.log(dataArray2);
+
+    document.getElementById("adminInvDonorName").innerHTML = dataArray2[0].donor_name + " | " + dataArray2[0].donor_id;
+    document.getElementById("adminInvItemName").innerHTML = dataArray2[0].item_name + " | " + dataArray2[0].item_id;
+    document.getElementById("adminInvLocation").innerHTML = dataArray2[0].item_location;
+    document.getElementById("adminInvRepairFre").innerHTML = dataArray2[0].repair_frequency;
+    document.getElementById("adminInvRepairSta").innerHTML = dataArray2[0].repair_status;
+    document.getElementById("adminInvRepairType").innerHTML = dataArray2[0].repair_type;
+    document.getElementById("adminInvStatus").innerHTML = dataArray2[0].item_status;
+
+    for (var i = 0; i < dataArray2.length; i++){
+      document.getElementById("adminInvStaHist").append(dataArray2[i].item_status+", ");
+      document.getElementById("adminInvLocHist").append(dataArray2[i].item_location+", ");
+      document.getElementById("adminInvDateHist").append(dataArray2[i].item_date+", ");
+     
+    }
+
+  });
+
+    
   await modal.present();
   currentModal = modal;
 }
