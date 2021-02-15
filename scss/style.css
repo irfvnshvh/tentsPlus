@@ -121,6 +121,12 @@ body {
   line-height: 200%;
 }
 
+#menuLogo {
+  width: 10vw;
+  margin-left: 10%;
+  padding-bottom: 40%;
+}
+
 .userName {
   width: 10vw;
   padding-bottom: 35%;
@@ -147,6 +153,26 @@ th {
   text-align: left;
 }
 
+#receiptLogo {
+  width: 10vw;
+  position: relative;
+  margin-top: 5%;
+}
+
+#receiptHeader {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: -5%;
+}
+
+#receiptLeftCol {
+  text-align: left;
+}
+
+#receiptRightCol {
+  text-align: right;
+}
+
 .updatePasswordModal .modal-wrapper {
   height: 45%;
   top: 55%;
@@ -155,6 +181,76 @@ th {
 }
 
 .updatePasswordModal .modal-wrapper {
+  height: 45%;
+  top: 55%;
+  position: absolute;
+  display: block;
+}
+
+.billAdminModal .modal-wrapper {
+  height: 50%;
+  top: 50%;
+  position: absolute;
+  display: block;
+}
+
+.invAdminModal .modal-wrapper {
+  height: 70%;
+  top: 40%;
+  position: absolute;
+  display: block;
+}
+
+.consumeAdminModal .modal-wrapper {
+  height: 50%;
+  top: 50%;
+  position: absolute;
+  display: block;
+}
+
+.adminTenantModal .modal-wrapper {
+  height: 80%;
+  top: 30%;
+  position: absolute;
+  display: block;
+}
+
+.payCWModal .modal-wrapper {
+  height: 50%;
+  top: 50%;
+  position: absolute;
+  display: block;
+}
+
+.billCWModal .modal-wrapper {
+  height: 50%;
+  top: 50%;
+  position: absolute;
+  display: block;
+}
+
+.CWInvModal .modal-wrapper {
+  height: 70%;
+  top: 35%;
+  position: absolute;
+  display: block;
+}
+
+.splitModal .modal-wrapper {
+  height: 50%;
+  top: 50%;
+  position: absolute;
+  display: block;
+}
+
+.consumeCWModal .modal-wrapper {
+  height: 45%;
+  top: 55%;
+  position: absolute;
+  display: block;
+}
+
+.invCWModal .modal-wrapper {
   height: 45%;
   top: 55%;
   position: absolute;

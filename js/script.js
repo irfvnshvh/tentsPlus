@@ -48,14 +48,6 @@ $("body").on("click", ".back-btn", function () {
   $("ion-app").load("start.html");
 });
 
-// remove this after finishing with login function
-// this one brings u directly into main page
-/*
-$("body").on("click", ".home-btn", function () {
-  console.log("going to homepage!");
-  $("ion-app").load("home.html");
-});*/
-
 $("body").on("click", "#pay-btn", function () {
   console.log("going to homepage!");
   $("ion-app").load("paymentModule.html");
@@ -513,6 +505,7 @@ function login() {
   }
   // end of else if phone and password not empty
 }
+
 //end of test function
 
 //--------------------- End of login function -------------------------------
