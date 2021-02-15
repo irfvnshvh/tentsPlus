@@ -127,6 +127,35 @@ body {
   padding-bottom: 40%;
 }
 
+#receiptLogo {
+  width: 10vw;
+  position:relative;
+  margin-top: 5%;
+}
+
+#receiptHeader {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: -5%;
+}
+
+
+#receiptLeftCol {
+    text-align: left;
+}
+
+
+#receiptRightCol {
+  text-align: right;
+}
+
+#receiptContainer {
+  position: relative; 
+  text-align: center;
+  padding: 2%;
+  margin: 0 auto;
+}
+
 .userName {
   width: 10vw;
   padding-bottom: 35%;
